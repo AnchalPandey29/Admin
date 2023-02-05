@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // material-ui
 import {
@@ -70,8 +70,21 @@ const status = [
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
 
 const DashboardDefault = () => {
+    const [startupList, setStartupList] = useState([]);
+
     const [value, setValue] = useState('today');
     const [slot, setSlot] = useState('week');
+
+    const fetchStartupData = async () => {
+        const res = await fetch('http://localhost:5000/user/getall');
+        const data = await res.json();
+        console.log(data);
+        setStartupList(data.result);
+    };
+
+    useEffect(() => {
+        fetchStartupData();
+    }, []);
 
     return (
         <Grid container rowSpacing={4.5} columnSpacing={2.75}>
@@ -86,7 +99,7 @@ const DashboardDefault = () => {
                 <AnalyticEcommerce title="Total Investors" count="00" percentage={70.5} extra="00" />
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total Startups" count="00" percentage={27.4} isLoss color="warning" extra="00" />
+                <AnalyticEcommerce title="Total Startups" count={startupList.length} percentage={27.4} isLoss color="warning" extra="00" />
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
                 <AnalyticEcommerce title="Total Subscriptions" count="00" percentage={27.4} isLoss color="warning" extra="00" />
