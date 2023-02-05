@@ -92,6 +92,10 @@ const DashboardDefault = () => {
                 <AnalyticEcommerce title="Total Subscriptions" count="00" percentage={27.4} isLoss color="warning" extra="00" />
             </Grid>
 
+            <Grid item xs={12} sm={6} md={4} lg={3}>
+                <AnalyticEcommerce title="Total Subscriptions" count="00" percentage={27.4} isLoss color="warning" extra="00" />
+            </Grid>
+
             <Grid item md={8} sx={{ display: { sm: 'none', md: 'block', lg: 'none' } }} />
 
             {/* row 2 */}
