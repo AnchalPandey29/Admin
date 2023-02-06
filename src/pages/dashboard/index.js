@@ -86,6 +86,15 @@ const DashboardDefault = () => {
         fetchStartupData();
     }, []);
 
+    const [investorList, setInvestorList] = useState([]);
+
+    const fetchinvestorData = async () => {
+        const res = await fetch('http://localhost:5000/user/getall');
+        const data = await res.json();
+        console.log(data);
+        setStartupList(data.result);
+    };
+
     return (
         <Grid container rowSpacing={4.5} columnSpacing={2.75}>
             {/* row 1 */}
@@ -93,10 +102,10 @@ const DashboardDefault = () => {
                 <Typography variant="h5">Dashboard</Typography>
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total Page Views" count="00" percentage={59.3} extra="00" />
+                <AnalyticEcommerce title="Total Page Views" count="06" percentage={59.3} extra="00" />
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total Investors" count="00" percentage={70.5} extra="00" />
+                <AnalyticEcommerce title="Total Investors" count="01" percentage={70.5} extra="00" />
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
                 <AnalyticEcommerce title="Total Startups" count={startupList.length} percentage={27.4} isLoss color="warning" extra="00" />
@@ -106,16 +115,13 @@ const DashboardDefault = () => {
             </Grid>
 
             <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total Subscriptions" count="00" percentage={27.4} isLoss color="warning" extra="00" />
+                <AnalyticEcommerce title="Total Blogs" count="00" percentage={27.4} isLoss color="warning" extra="00" />
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total Investors" count="00" percentage={70.5} extra="00" />
+                <AnalyticEcommerce title="Total Compaigns" count="00" percentage={70.5} extra="00" />
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total Investors" count="00" percentage={70.5} extra="00" />
-            </Grid>
-            <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total Investors" count="00" percentage={70.5} extra="00" />
+                <AnalyticEcommerce title="Total News" count="00" percentage={70.5} extra="00" />
             </Grid>
 
             <Grid item md={8} sx={{ display: { sm: 'none', md: 'block', lg: 'none' } }} />
