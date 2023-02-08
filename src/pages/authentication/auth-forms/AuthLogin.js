@@ -28,10 +28,13 @@ import AnimateButton from 'components/@extended/AnimateButton';
 
 // assets
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
+import { useNavigate } from '../../../../node_modules/react-router-dom/dist/index';
+import Swal from 'sweetalert2';
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
 const AuthLogin = () => {
+    const navigate = useNavigate();
     const [checked, setChecked] = React.useState(false);
 
     const [showPassword, setShowPassword] = React.useState(false);
@@ -41,6 +44,35 @@ const AuthLogin = () => {
 
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
+    };
+
+    const userLoginSubmit = async (values, { setErrors, setStatus, setSubmitting }) => {
+        try {
+            const res = await fetch('http://localhost:5000/admin/auth', {
+                method: 'POST',
+                body: JSON.stringify(values),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            console.log(await res.json());
+
+            if (res.status === 201) {
+                setStatus({ success: false });
+                setSubmitting(false);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: 'loggedin'
+                });
+                navigate('/');
+            }
+        } catch (err) {
+            setStatus({ success: false });
+            setErrors({ submit: err.message });
+            setSubmitting(false);
+        }
     };
 
     return (
@@ -55,16 +87,7 @@ const AuthLogin = () => {
                     email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
                     password: Yup.string().max(255).required('Password is required')
                 })}
-                onSubmit={async (values, { setErrors, setStatus, setSubmitting }) => {
-                    try {
-                        setStatus({ success: false });
-                        setSubmitting(false);
-                    } catch (err) {
-                        setStatus({ success: false });
-                        setErrors({ submit: err.message });
-                        setSubmitting(false);
-                    }
-                }}
+                onSubmit={userLoginSubmit}
             >
                 {({ errors, handleBlur, handleChange, handleSubmit, isSubmitting, touched, values }) => (
                     <form noValidate onSubmit={handleSubmit}>
