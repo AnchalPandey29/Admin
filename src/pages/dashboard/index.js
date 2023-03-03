@@ -19,7 +19,10 @@ import {
 } from '@mui/material';
 
 // project import
-import OrdersTable from './OrdersTable';
+import OrdersTable from './NewsTable';
+import BlogTable from './BlogTable'
+import CampaignTable from './CampaignTable'
+import UserTable from './UserTable'
 import IncomeAreaChart from './IncomeAreaChart';
 import MonthlyBarChart from './MonthlyBarChart';
 import ReportAreaChart from './ReportAreaChart';
@@ -76,7 +79,7 @@ const DashboardDefault = () => {
     const [slot, setSlot] = useState('week');
 
     const fetchStartupData = async () => {
-        const res = await fetch('http://localhost:5000/user/getall');
+        //const res = await fetch('http://localhost:5000/startup/getall');
         const data = await res.json();
         console.log(data);
         setStartupList(data.result);
@@ -105,7 +108,7 @@ const DashboardDefault = () => {
                 <AnalyticEcommerce title="Total Page Views" count="06" percentage={59.3} extra="00" />
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total Investors" count="01" percentage={70.5} extra="00" />
+                <AnalyticEcommerce title="Total Investors" count={startupList} percentage={70.5} extra="00" />
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
                 <AnalyticEcommerce title="Total Startups" count={startupList.length} percentage={27.4} isLoss color="warning" extra="00" />
@@ -127,6 +130,8 @@ const DashboardDefault = () => {
             <Grid item md={8} sx={{ display: { sm: 'none', md: 'block', lg: 'none' } }} />
 
             {/* row 2 */}
+
+{/* 
             <Grid item xs={12} md={7} lg={8}>
                 <Grid container alignItems="center" justifyContent="space-between">
                     <Grid item>
@@ -178,12 +183,14 @@ const DashboardDefault = () => {
                     <MonthlyBarChart />
                 </MainCard>
             </Grid>
+ */}
+
 
             {/* row 3 */}
-            <Grid item xs={12} md={7} lg={8}>
+            <Grid item xs={12} md={7} lg={8} >
                 <Grid container alignItems="center" justifyContent="space-between">
                     <Grid item>
-                        <Typography variant="h5">Recent Orders</Typography>
+                        <Typography variant="h5">News DataTable</Typography>
                     </Grid>
                     <Grid item />
                 </Grid>
@@ -191,6 +198,45 @@ const DashboardDefault = () => {
                     <OrdersTable />
                 </MainCard>
             </Grid>
+
+            <Grid item xs={12} md={7} lg={8}>
+                <Grid container alignItems="center" justifyContent="space-between">
+                    <Grid item>
+                        <Typography variant="h5">Blog DataTable</Typography>
+                    </Grid>
+                    <Grid item />
+                </Grid>
+                <MainCard sx={{ mt: 2 }} content={false}>
+                <BlogTable/>
+                </MainCard>
+            </Grid>
+
+            <Grid item xs={12} md={7} lg={8}>
+                <Grid container alignItems="center" justifyContent="space-between">
+                    <Grid item>
+                        <Typography variant="h5">Campaign DataTable</Typography>
+                    </Grid>
+                    <Grid item />
+                </Grid>
+                <MainCard sx={{ mt: 2 }} content={false}>
+                <CampaignTable/>
+                </MainCard>
+            </Grid>
+
+            <Grid item xs={12} md={7} lg={8}>
+                <Grid container alignItems="center" justifyContent="space-between">
+                    <Grid item>
+                        <Typography variant="h5">Users DataTable</Typography>
+                    </Grid>
+                    <Grid item />
+                </Grid>
+                <MainCard sx={{ mt: 2 }} content={false}>
+                <UserTable/>
+                </MainCard>
+            </Grid>
+
+
+{/*             
             <Grid item xs={12} md={5} lg={4}>
                 <Grid container alignItems="center" justifyContent="space-between">
                     <Grid item>
@@ -215,9 +261,11 @@ const DashboardDefault = () => {
                     </List>
                     <ReportAreaChart />
                 </MainCard>
-            </Grid>
+            </Grid> */}
 
             {/* row 4 */}
+
+{/*             
             <Grid item xs={12} md={7} lg={8}>
                 <Grid container alignItems="center" justifyContent="space-between">
                     <Grid item>
@@ -371,7 +419,7 @@ const DashboardDefault = () => {
                         </Button>
                     </Stack>
                 </MainCard>
-            </Grid>
+            </Grid> */}
         </Grid>
     );
 };
