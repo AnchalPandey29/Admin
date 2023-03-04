@@ -3,6 +3,7 @@ import { lazy } from 'react';
 // project import
 import Loadable from 'components/Loadable';
 import MainLayout from 'layout/MainLayout';
+import AdminAuth from 'AdminAuth';
 
 // render - dashboard
 const DashboardDefault = Loadable(lazy(() => import('pages/dashboard')));
@@ -20,7 +21,7 @@ const AntIcons = Loadable(lazy(() => import('pages/components-overview/AntIcons'
 
 const MainRoutes = {
     path: '/',
-    element: <MainLayout />,
+    element: (<AdminAuth><MainLayout /></AdminAuth>),
     children: [
         {
             path: '/',

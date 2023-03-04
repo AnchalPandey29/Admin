@@ -40,6 +40,6 @@
                 "ignoreRestSiblings": false
             }
         ],
-        "prettier/prettier": [1]
+        "prettier/prettier": [0]
     }
 }
