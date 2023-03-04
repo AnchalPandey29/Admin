@@ -71,7 +71,7 @@ const headCells = [
     },
     {
         id: 'fat',
-        align: 'right',
+        align: 'left',
         disablePadding: false,
         label: 'Date'
     },
@@ -200,34 +200,36 @@ export default function OrderTable() {
             >
                 <OrderTableHead order={order} orderBy={orderBy} />
                 <TableBody>
-                    {stableSort(blogList, getComparator(order, orderBy)).map((row, index) => {
-                        const isItemSelected = isSelected(row.trackingNo);
-                        const labelId = `enhanced-table-checkbox-${index}`;
+                        {stableSort(blogList, getComparator(order, orderBy)).map((row, index) => {
+                            const isItemSelected = isSelected(row.trackingNo);
+                            const labelId = `enhanced-table-checkbox-${index}`;
 
-                        return (
-                            <TableRow
-                                hover
-                                role="checkbox"
-                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                aria-checked={isItemSelected}
-                                tabIndex={-1}
-                                key={row.trackingNo}
-                                selected={isItemSelected}
-                            >
-                                <TableCell component="th" id={labelId} scope="row" align="left">
-                                    <Link color="secondary" component={RouterLink} to="">
-                                        {new Date(row.date).toLocaleDateString()}
-                                    </Link>
-                                </TableCell>
-                                <TableCell align="left">{row.heading}</TableCell>
-                                <TableCell align="right">{row.fat}</TableCell>
-                                <TableCell align="left">
-                                    <OrderStatus status={row.carbs} />
-                                </TableCell>
-                            </TableRow>
-                        );
-                    })}
-                </TableBody>
+                            return (
+                                <TableRow
+                                    hover
+                                    role="checkbox"
+                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    aria-checked={isItemSelected}
+                                    tabIndex={-1}
+                                    key={row.trackingNo}
+                                    selected={isItemSelected}
+                                >
+                                    <TableCell component="th" id={labelId} scope="row" align="left">
+                                        {/* <Link color="secondary" component={RouterLink} to="">      
+                                        </Link> */}
+                                        {row.image}
+                                    </TableCell>
+                                    <TableCell align="left">{row.heading}</TableCell>
+                                    <TableCell align="left">{new Date(row.date).toLocaleDateString()}
+                                    </TableCell>
+                                    <TableCell align="left">
+                                    {row.content}
+                                        {/* <OrderStatus status={row.carbs} /> */}
+                                    </TableCell>
+                                </TableRow>
+                            );
+                        })}
+                    </TableBody>
             </Table>
         </TableContainer>
     </Box>        

@@ -69,28 +69,35 @@ const headCells = [
         id: 'date',
         align: 'left',
         disablePadding: false,
-        label: 'Date'
+        label: 'Image'
     },
     {
         id: 'name',
         align: 'left',
         disablePadding: true,
-        label: 'Product Name'
+        label: 'Heading'
     },
     {
         id: 'fat',
-        align: 'right',
+        align: 'left',
         disablePadding: false,
-        label: 'Total Order'
+        label: 'Starting Date'
     },
     {
         id: 'carbs',
         align: 'left',
         disablePadding: true,
-        label: 'Email'
+        label: 'Last Date'
+    },
+    {
+        id: 'carbs',
+        align: 'left',
+        disablePadding: true,
+        label: 'Content'
     },
     
 ];
+
 
 // ==============================|| ORDER TABLE - HEADER ||============================== //
 
@@ -238,15 +245,19 @@ export default function OrderTable() {
                                     selected={isItemSelected}
                                 >
                                     <TableCell component="th" id={labelId} scope="row" align="left">
-                                        <Link color="secondary" component={RouterLink} to="">
-                                            {new Date(row.date).toLocaleDateString()}
-                                        </Link>
+                                        {/* <Link color="secondary" component={RouterLink} to="">
+                                        </Link> */}
+                                        {row.image}
                                     </TableCell>
-                                    <TableCell align="left">{row.heading}</TableCell>
-                                    <TableCell align="right">{row.content}</TableCell>
-                                    <TableCell align="left">
+                                    <TableCell align="left">{row.title}</TableCell>
+                                    <TableCell align="left">{new Date(row.startdate).toLocaleDateString()}
+                                    </TableCell>
+                                    <TableCell align="left">{new Date(row.lastdate).toLocaleDateString()}
+                                    </TableCell>                                   
+                                    <TableCell align="left">{row.content}</TableCell>
+                                    {/* <TableCell align="left">
                                         <OrderStatus status={row.carbs} />
-                                    </TableCell>
+                                    </TableCell> */}
                                 </TableRow>
                             );
                         })}
