@@ -57,6 +57,5 @@ const support = {
         }
     ]
 };
->>>>>>> 9729708d49919f2e9d69534e8a488c707b929e94
 
 // export default support;
