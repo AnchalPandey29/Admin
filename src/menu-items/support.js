@@ -1,13 +1,13 @@
-// // assets
-// import { ChromeOutlined, QuestionOutlined } from '@ant-design/icons';
+// assets
+import { ChromeOutlined, QuestionOutlined } from '@ant-design/icons';
 
-// // icons
-// const icons = {
-//     ChromeOutlined,
-//     QuestionOutlined
-// };
+// icons
+const icons = {
+    ChromeOutlined,
+    QuestionOutlined
+};
 
-// // ==============================|| MENU ITEMS - SAMPLE PAGE & DOCUMENTATION ||============================== //
+// ==============================|| MENU ITEMS - SAMPLE PAGE & DOCUMENTATION ||============================== //
 
 
 // const support = {
@@ -58,4 +58,4 @@ const support = {
     ]
 };
 
-// export default support;
+export default support;
