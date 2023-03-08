@@ -55,10 +55,12 @@ const AuthLogin = () => {
                     'Content-Type': 'application/json'
                 }
             });
-
-            console.log(await res.json());
+            console.log(res.status);
+            
 
             if (res.status === 201) {
+                const data = (await res.json()).result;
+                data.role = 'admin';
                 setStatus({ success: false });
                 setSubmitting(false);
                 Swal.fire({
@@ -66,6 +68,8 @@ const AuthLogin = () => {
                     title: 'Success',
                     text: 'loggedin'
                 });
+
+                sessionStorage.setItem('admin', JSON.stringify(data));
                 navigate('/');
             }
         } catch (err) {
@@ -79,8 +83,9 @@ const AuthLogin = () => {
         <>
             <Formik
                 initialValues={{
-                    email: 'info@codedthemes.com',
-                    password: '123456',
+                    email: 'mmm@gmail.com',
+                    email: 'mmm@mail.com',
+                    password: '1234',
                     submit: null
                 }}
                 validationSchema={Yup.object().shape({
@@ -187,14 +192,14 @@ const AuthLogin = () => {
                                     </Button>
                                 </AnimateButton>
                             </Grid>
-                            <Grid item xs={12}>
+                            {/* <Grid item xs={12}>
                                 <Divider>
                                     <Typography variant="caption"> Login with</Typography>
                                 </Divider>
                             </Grid>
                             <Grid item xs={12}>
                                 <FirebaseSocial />
-                            </Grid>
+                            </Grid> */}
                         </Grid>
                     </form>
                 )}
