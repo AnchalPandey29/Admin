@@ -74,7 +74,7 @@ const status = [
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
 
 const DashboardDefault = () => {
-    const [startupList, setStartupList] = useState([]);
+    // const [startupList, setStartupList] = useState();
 
     const [value, setValue] = useState('today');
     const [slot, setSlot] = useState('week');
@@ -86,18 +86,18 @@ const DashboardDefault = () => {
         setStartupList(data.result);
     };
 
-    useEffect(() => {
-        fetchStartupData();
-    }, []);
+    // useEffect(() => {
+    //     fetchStartupData();
+    // }, []);
 
-    const [investorList, setInvestorList] = useState([]);
+    // const [investorList, setInvestorList] = useState([]);
 
-    const fetchinvestorData = async () => {
-        const res = await fetch('http://localhost:5000/user/getall');
-        const data = await res.json();
-        console.log(data);
-        setStartupList(data.result);
-    };
+    // const fetchinvestorData = async () => {
+    //     const res = await fetch('http://localhost:5000/user/getall');
+    //     const data = await res.json();
+    //     console.log(data);
+    //     setStartupList(data.result);
+    // };
 
     return (
         <Grid container rowSpacing={4.5} columnSpacing={2.75}>

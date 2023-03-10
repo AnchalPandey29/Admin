@@ -61,17 +61,23 @@ const headCells = [
         id: 'date',
         align: 'left',
         disablePadding: false,
-        label: 'Image'
+        label: 'Name'
     },
     {
         id: 'name',
         align: 'left',
         disablePadding: true,
-        label: 'Heading'
+        label: 'Email'
+    },
+    {
+        id: 'carbs',
+        align: 'left',
+        disablePadding: true,
+        label: 'Contact No'
     },
     {
         id: 'fat',
-        align: 'right',
+        align: 'left',
         disablePadding: false,
         label: 'Date'
     },
@@ -79,7 +85,14 @@ const headCells = [
         id: 'carbs',
         align: 'left',
         disablePadding: true,
-        label: 'Content'
+        label: 'Type'
+    },
+    
+    {
+        id: 'carbs',
+        align: 'left',
+        disablePadding: true,
+        label: 'Sector'
     },
     
 ];
@@ -215,15 +228,20 @@ export default function OrderTable() {
                                 selected={isItemSelected}
                             >
                                 <TableCell component="th" id={labelId} scope="row" align="left">
-                                    <Link color="secondary" component={RouterLink} to="">
+                                    {/* <Link color="secondary" component={RouterLink} to="">
                                         {new Date(row.date).toLocaleDateString()}
-                                    </Link>
+                                    </Link> */}
+                                    {row.startupname}
                                 </TableCell>
-                                <TableCell align="left">{row.heading}</TableCell>
-                                <TableCell align="right">{row.fat}</TableCell>
-                                <TableCell align="left">
-                                    <OrderStatus status={row.carbs} />
+                                <TableCell align="left">{row.email}</TableCell>
+                                <TableCell align="left">{row.tel}</TableCell>
+                                <TableCell align="left">{new Date(row.created_at).toLocaleDateString()}
                                 </TableCell>
+                                <TableCell align="left">{row.type}</TableCell>
+                                <TableCell align="left">{row.sector}</TableCell>
+                                {/* <TableCell align="left">
+                                    // {/* <OrderStatus status={row.carbs} /> 
+                                </TableCell> */}
                             </TableRow>
                         );
                     })}

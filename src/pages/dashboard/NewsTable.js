@@ -81,13 +81,13 @@ const headCells = [
         id: 'fat',
         align: 'left',
         disablePadding: false,
-        label: 'Content'
+        label: 'Date'
     },
     {
         id: 'carbs',
         align: 'left',
         disablePadding: true,
-        label: ''
+        label: 'Content'
     },
     
 ];
@@ -238,14 +238,15 @@ export default function OrderTable() {
                                     selected={isItemSelected}
                                 >
                                     <TableCell component="th" id={labelId} scope="row" align="left">
-                                        <Link color="secondary" component={RouterLink} to="">
-                                            {new Date(row.date).toLocaleDateString()}
-                                        </Link>
+                                        {/* <Link color="secondary" component={RouterLink} to="">      
+                                        </Link> */}
+                                        {row.image}
                                     </TableCell>
                                     <TableCell align="left">{row.heading}</TableCell>
-                                    <TableCell align="right">{row.content}</TableCell>
+                                    <TableCell align="left">{row.content}</TableCell>
                                     <TableCell align="left">
-                                        <OrderStatus status={row.carbs} />
+                                    {new Date(row.date).toLocaleDateString()}
+                                        {/* <OrderStatus status={row.carbs} /> */}
                                     </TableCell>
                                 </TableRow>
                             );
