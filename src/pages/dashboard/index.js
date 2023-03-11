@@ -23,6 +23,7 @@ import OrdersTable from './NewsTable';
 import BlogTable from './BlogTable'
 import CampaignTable from './CampaignTable'
 import UserTable from './UserTable'
+import ManageNews from './ManageNews';
 import IncomeAreaChart from './IncomeAreaChart';
 import MonthlyBarChart from './MonthlyBarChart';
 import ReportAreaChart from './ReportAreaChart';
@@ -232,6 +233,18 @@ const DashboardDefault = () => {
                 </Grid>
                 <MainCard sx={{ mt: 2 }} content={false}>
                 <UserTable/>
+                </MainCard>
+            </Grid>
+
+            <Grid item xs={12} md={7} lg={8}>
+                <Grid container alignItems="center" justifyContent="space-between">
+                    <Grid item>
+                        <Typography variant="h5">Users DataTable</Typography>
+                    </Grid>
+                    <Grid item />
+                </Grid>
+                <MainCard sx={{ mt: 2 }} content={false}>
+                <ManageNews/>
                 </MainCard>
             </Grid>
 
