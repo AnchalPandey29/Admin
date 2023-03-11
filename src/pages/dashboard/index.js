@@ -37,6 +37,7 @@ import avatar1 from 'assets/images/users/avatar-1.png';
 import avatar2 from 'assets/images/users/avatar-2.png';
 import avatar3 from 'assets/images/users/avatar-3.png';
 import avatar4 from 'assets/images/users/avatar-4.png';
+import UserDataGrid from './UserDataGrid';
 
 // avatar style
 const avatarSX = {
@@ -79,12 +80,12 @@ const DashboardDefault = () => {
     const [value, setValue] = useState('today');
     const [slot, setSlot] = useState('week');
 
-    // const fetchStartupData = async () => {
-    //     const res = await fetch('http://localhost:5000/startup/getall');
-    //     const data = await res.json();
-    //     console.log(data);
-    //     setStartupList(data.result);
-    // };
+    const fetchStartupData = async () => {
+        const res = await fetch('http://localhost:5000/startup/getall');
+        const data = await res.json();
+        console.log(data);
+        setStartupList(data.result);
+    };
 
     // useEffect(() => {
     //     fetchStartupData();
@@ -108,12 +109,12 @@ const DashboardDefault = () => {
             <Grid item xs={12} sm={6} md={4} lg={3}>
                 <AnalyticEcommerce title="Total Page Views" count="06" percentage={59.3} extra="00" />
             </Grid>
-            <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total Investors" /*count= {startupList.Length}*/ percentage={70.5} extra="00" />
+            {/* <Grid item xs={12} sm={6} md={4} lg={3}>
+                <AnalyticEcommerce title="Total Investors" count={startupList} percentage={70.5} extra="00" />
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total Startups" /*count={startupList.length}*/ percentage={27.4} isLoss color="warning" extra="00" />
-            </Grid>
+                <AnalyticEcommerce title="Total Startups" count={startupList.length} percentage={27.4} isLoss color="warning" extra="00" />
+            </Grid> */}
             <Grid item xs={12} sm={6} md={4} lg={3}>
                 <AnalyticEcommerce title="Total Subscriptions" count="00" percentage={27.4} isLoss color="warning" extra="00" />
             </Grid>
@@ -232,7 +233,10 @@ const DashboardDefault = () => {
                     <Grid item />
                 </Grid>
                 <MainCard sx={{ mt: 2 }} content={false}>
-                <UserTable/>
+                {/* <UserTable/> */}
+                
+                <UserDataGrid/>
+
                 </MainCard>
             </Grid>
 
