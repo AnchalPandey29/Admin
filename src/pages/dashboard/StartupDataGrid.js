@@ -20,7 +20,7 @@ const CustomToolbar =  () => {
   );
 }
 
-const UserDataGrid = () => {
+const StartupDataGrid = () => {
 
     const [userList, setUserList] = useState([]);
     // const { data } = useDemoData({
@@ -34,8 +34,11 @@ const UserDataGrid = () => {
           { field: "_id", headerName: "ID", width: 150 },
           { field: "email", headerName: "Email Address", width: 150 },
           { field: "name", headerName: "Name", width: 200 },
-          { field: "city", headerName: "City", width: 200 },
+          { field: "created_at", headerName: "Date of creation", width: 200 },
           { field: "tel", headerName: "Contact", width: 200 },
+          { field: "city", headerName: "City", width: 200 },
+          { field: "productdescription", headerName: "Product/Service Detail", width: 200 },
+
       //     {
       //       field: "email",
       //       headerName: "Email",
@@ -53,7 +56,7 @@ const UserDataGrid = () => {
       //     },
         ];
 
-    const getBlogFromBackend = async () => {
+    const getStartupFromBackend = async () => {
         // send request 
         const res= await fetch('http://localhost:5000/startup/getall');
 
@@ -65,7 +68,7 @@ const UserDataGrid = () => {
 
     };
     useEffect(() => {
-        getBlogFromBackend();
+        getStartupFromBackend();
       }, [])
 
       const handleRowSelection = (e) => {
@@ -92,4 +95,4 @@ const UserDataGrid = () => {
   )
 }
 
-export default UserDataGrid
+export default StartupDataGrid

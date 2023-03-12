@@ -37,8 +37,11 @@ import avatar1 from 'assets/images/users/avatar-1.png';
 import avatar2 from 'assets/images/users/avatar-2.png';
 import avatar3 from 'assets/images/users/avatar-3.png';
 import avatar4 from 'assets/images/users/avatar-4.png';
-import UserDataGrid from './UserDataGrid';
-
+import UserDataGrid from './StartupDataGrid';
+import StartupDataGrid from './StartupDataGrid';
+import InvestorDataGrid from './InvestorDataGrid';
+import BlogDataGrid from './BlogDataGrid';
+import NewsDataGrid from './NewsDataGrid copy';
 // avatar style
 const avatarSX = {
     width: 36,
@@ -188,8 +191,11 @@ const DashboardDefault = () => {
  */}
 
 
+
             {/* row 3 */}
+            
             <Grid item xs={12} md={7} lg={8} >
+                
                 <Grid container alignItems="center" justifyContent="space-between">
                     <Grid item>
                         <Typography variant="h5">News DataTable</Typography>
@@ -197,7 +203,7 @@ const DashboardDefault = () => {
                     <Grid item />
                 </Grid>
                 <MainCard sx={{ mt: 2 }} content={false}>
-                    <OrdersTable />
+                    <NewsDataGrid/>
                 </MainCard>
             </Grid>
 
@@ -209,7 +215,7 @@ const DashboardDefault = () => {
                     <Grid item />
                 </Grid>
                 <MainCard sx={{ mt: 2 }} content={false}>
-                <BlogTable/>
+                <BlogDataGrid/>
                 </MainCard>
             </Grid>
 
@@ -228,14 +234,14 @@ const DashboardDefault = () => {
             <Grid item xs={12} md={7} lg={8}>
                 <Grid container alignItems="center" justifyContent="space-between">
                     <Grid item>
-                        <Typography variant="h5">Users DataTable</Typography>
+                        <Typography variant="h5">Startup DataTable</Typography>
                     </Grid>
                     <Grid item />
                 </Grid>
                 <MainCard sx={{ mt: 2 }} content={false}>
                 {/* <UserTable/> */}
                 
-                <UserDataGrid/>
+                <StartupDataGrid/>
 
                 </MainCard>
             </Grid>
@@ -243,12 +249,12 @@ const DashboardDefault = () => {
             <Grid item xs={12} md={7} lg={8}>
                 <Grid container alignItems="center" justifyContent="space-between">
                     <Grid item>
-                        <Typography variant="h5">Users DataTable</Typography>
+                        <Typography variant="h5">investor DataTable</Typography>
                     </Grid>
                     <Grid item />
                 </Grid>
                 <MainCard sx={{ mt: 2 }} content={false}>
-                <ManageNews/>
+                <InvestorDataGrid/>
                 </MainCard>
             </Grid>
 
