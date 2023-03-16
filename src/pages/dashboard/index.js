@@ -42,6 +42,7 @@ import StartupDataGrid from './StartupDataGrid';
 import InvestorDataGrid from './InvestorDataGrid';
 import BlogDataGrid from './BlogDataGrid';
 import NewsDataGrid from './NewsDataGrid';
+import SubscriptionData from './SubscriptionData';
 // avatar style
 const avatarSX = {
     width: 36,
@@ -298,12 +299,24 @@ const DashboardDefault = () => {
             <div style={{width:"100%",padding:"20px"}}>
                 <Grid container alignItems="center" justifyContent="space-between">
                     <Grid item>
-                        <Typography variant="h5">investor DataTable</Typography>
+                        <Typography variant="h5">Investor DataTable</Typography>
                     </Grid>
                     <Grid item />
                 </Grid>
                 <MainCard sx={{ mt: 2 }} content={false}>
                 <InvestorDataGrid/>
+                </MainCard>
+            </div>
+
+            <div style={{width:"100%",padding:"20px"}}>
+                <Grid container alignItems="center" justifyContent="space-between">
+                    <Grid item>
+                        <Typography variant="h5">Subscription DataTable</Typography>
+                    </Grid>
+                    <Grid item />
+                </Grid>
+                <MainCard sx={{ mt: 2 }} content={false}>
+                    <SubscriptionData/>
                 </MainCard>
             </div>
 

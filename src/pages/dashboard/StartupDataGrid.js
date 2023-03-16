@@ -62,25 +62,11 @@ const StartupDataGrid = () => {
                 return alert(JSON.stringify(thisRow, null, 4));
               };
         
-              return <Button onClick={onClick}>Click</Button>;
+              return <Button onClick={() => deleteUser(userList._id)}>Delete</Button>;
             }
           },
 
-      //     {
-      //       field: "email",
-      //       headerName: "Email",
-      //       width: 250,
-      //     },
-      //     {
-      //       field: "password",
-      //       headerName: "Password",
-      //       width: 150,
-      //     },
-      //     {
-      //       field: "profile",
-      //       headerName: "View Profile",
-      //       width: 130,
-      //     },
+     
         ];
 
     const getStartupFromBackend = async () => {

@@ -20,22 +20,22 @@ const CustomToolbar =  () => {
   );
 }
 
-const BlogDataGrid = () => {
+const SubscriptionData = () => {
 
     const [userList, setUserList] = useState([]);
   
     const columns = [
           { field: "_id", headerName: "ID", width: 150 },
-          { field: "date", headerName: "Date", width: 150 },
-          { field: "heading", headerName: "Heading", width: 200 },
-          { field: "content", headerName: "Content", width: 200 },
-          { field: "image", headerName: "Image", width: 200 },
+          { field: "startDate", headerName: "Start Date", width: 200 },
+          { field: "endDate", headerName: "End Date", width: 200 },
+          { field: "name", headerName: "Username", width: 150 },
+          { field: "data.name", headerName: "Plan", width: 200 },
         
        ];
 
     const getBlogFromBackend = async () => {
         // send request 
-        const res= await fetch('http://localhost:5000/Blog/getall');
+        const res= await fetch('http://localhost:5000/Subscription/getall');
 
         // accessing data from response
         const data = await res.json();
@@ -72,4 +72,4 @@ const BlogDataGrid = () => {
   )
 }
 
-export default BlogDataGrid
+export default SubscriptionData;
