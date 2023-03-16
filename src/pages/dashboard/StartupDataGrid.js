@@ -7,6 +7,7 @@ import {
   GridToolbarExport,
   GridToolbarDensitySelector,
 } from '@mui/x-data-grid';
+import { Button } from '../../../node_modules/@mui/material/index';
 // import { useDemoData } from '@mui/x-data-grid-generator';
 
 const CustomToolbar =  () => {
@@ -38,6 +39,32 @@ const StartupDataGrid = () => {
           { field: "tel", headerName: "Contact", width: 200 },
           { field: "city", headerName: "City", width: 200 },
           { field: "productdescription", headerName: "Product/Service Detail", width: 200 },
+          {
+            field: "action",
+            headerName: "Action",
+            sortable: false,
+            renderCell: (params) => {
+              const onClick = (e) => {
+                e.stopPropagation(); // don't select this row after clicking
+        
+                const api = params.api;
+                const thisRow = {};
+        
+                api
+                  .getAllColumns()
+                  .filter((c) => c.field !== "__check__" && !!c)
+                  .forEach(
+                    (c) => (thisRow[c.field] = params.getValue(params.id, c.field))
+                  );
+        
+                  console.log(thisRow._id);
+
+                return alert(JSON.stringify(thisRow, null, 4));
+              };
+        
+              return <Button onClick={onClick}>Click</Button>;
+            }
+          },
 
       //     {
       //       field: "email",
@@ -65,7 +92,6 @@ const StartupDataGrid = () => {
 
         console.log(data.result.filter(obj => obj.role === 'startup'));
         setUserList(data.result.filter(obj => obj.role === 'startup'));
-
     };
     useEffect(() => {
         getStartupFromBackend();
@@ -88,7 +114,6 @@ const StartupDataGrid = () => {
           toolbar: CustomToolbar,
         }}
         checkboxSelection
-        onRowSelected={handleRowSelection}
         
         />
         </div>

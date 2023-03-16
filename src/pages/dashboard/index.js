@@ -82,6 +82,7 @@ const DashboardDefault = () => {
 
     const [value, setValue] = useState('today');
     const [slot, setSlot] = useState('week');
+    const [startupList, setStartupList] = useState([]);
 
     const fetchStartupData = async () => {
         const res = await fetch('http://localhost:5000/startup/getall');
@@ -90,9 +91,9 @@ const DashboardDefault = () => {
         setStartupList(data.result);
     };
 
-    // useEffect(() => {
-    //     fetchStartupData();
-    // }, []);
+    useEffect(() => {
+        fetchStartupData();
+    }, []);
 
     // const [investorList, setInvestorList] = useState([]);
 
@@ -123,7 +124,7 @@ const DashboardDefault = () => {
             </Grid>
 
             <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total Blogs" count="00" percentage={27.4} isLoss color="warning" extra="00" />
+                <AnalyticEcommerce title="Total Startups" count={startupList.length} percentage={27.4} isLoss color="warning" extra="00" />
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
                 <AnalyticEcommerce title="Total Compaigns" count="00" percentage={70.5} extra="00" />
