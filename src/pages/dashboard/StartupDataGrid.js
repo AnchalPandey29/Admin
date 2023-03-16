@@ -88,6 +88,20 @@ const StartupDataGrid = () => {
         console.log(e);
       }
 
+     
+
+      const deleteUser = async (id) => {
+        console.log(id);
+        const res = await fetch('http://localhost:5000/startup/delete/'+id, {
+            method : 'DELETE'
+        })
+
+        if(res.status===200){
+          getStartupFromBackend();
+            toast.success('User Deleted Successfully!!');
+        }
+    }
+
   return (
     <div style={{height: '20rem'}}>
 
