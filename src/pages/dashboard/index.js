@@ -134,6 +134,7 @@ const DashboardDefault = () => {
        fetchInvestorData();
         fetchBlogData();
         fetchNewsData();
+        fetchCampaignData(); 
         fetchSubscriptionData();
     }, []);
 
@@ -176,7 +177,7 @@ const DashboardDefault = () => {
                 <AnalyticEcommerce title="Total News" count={newsList.length} percentage={70.5} extra="00" />
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total Campaigns" count={newsList.length} percentage={70.5} extra="00" />
+                <AnalyticEcommerce title="Total Campaigns" count={campaignList.length} percentage={70.5} extra="00" />
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
                 <AnalyticEcommerce title="Total Subscriptions" count={subscriptionList.length} percentage={70.5} extra="00" />
