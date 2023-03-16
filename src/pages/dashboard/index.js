@@ -41,7 +41,7 @@ import UserDataGrid from './StartupDataGrid';
 import StartupDataGrid from './StartupDataGrid';
 import InvestorDataGrid from './InvestorDataGrid';
 import BlogDataGrid from './BlogDataGrid';
-import NewsDataGrid from './NewsDataGrid copy';
+import NewsDataGrid from './NewsDataGrid';
 // avatar style
 const avatarSX = {
     width: 36,
@@ -78,21 +78,63 @@ const status = [
 // ==============================|| DASHBOARD - DEFAULT ||============================== //
 
 const DashboardDefault = () => {
-    // const [startupList, setStartupList] = useState();
 
-    const [value, setValue] = useState('today');
-    const [slot, setSlot] = useState('week');
+    const [investorList, setInvestorList] = useState([]);
     const [startupList, setStartupList] = useState([]);
+    const [blogList, setBlogList] = useState([]);
+    const [newsList, setNewsList] = useState([]);
+    const [campaignList, setCampaignList] = useState([]);
+    const [subscriptionList, setSubscriptionList] = useState([]);
 
     const fetchStartupData = async () => {
-        const res = await fetch('http://localhost:5000/startup/getall');
+        const res= await fetch('http://localhost:5000/startup/getall');
+        const data = await res.json();
+        console.log(data.result.filter(obj => obj.role === 'startup'));
+        setStartupList(data.result.filter(obj => obj.role === 'startup'));
+    };
+
+    const fetchBlogData = async () => {
+        const res = await fetch('http://localhost:5000/Blog/getall');
         const data = await res.json();
         console.log(data);
-        setStartupList(data.result);
+        setBlogList(data.result);
     };
+
+    const fetchNewsData = async () => {
+        const res = await fetch('http://localhost:5000/News/getall');
+        const data = await res.json();
+        console.log(data);
+        setNewsList(data.result);
+    };
+
+    const fetchInvestorData = async () => {
+        const res= await fetch('http://localhost:5000/startup/getall');
+        const data = await res.json();
+        console.log(data.result.filter(obj => obj.role === 'investor'));
+        setInvestorList(data.result.filter(obj => obj.role === 'investor'));
+        };
+    
+
+     const fetchSubscriptionData = async () => {
+            const res= await fetch('http://localhost:5000/Subscription/getall');
+            const data = await res.json();
+            console.log(data);
+            setSubscriptionList(data.result);
+    };
+        
+    const fetchCampaignData = async () => {
+        const res= await fetch('http://localhost:5000/campaign/getall');
+        const data = await res.json();
+        console.log(data);
+        setCampaignList(data.result);
+};      
 
     useEffect(() => {
         fetchStartupData();
+       fetchInvestorData();
+        fetchBlogData();
+        fetchNewsData();
+        fetchSubscriptionData();
     }, []);
 
     // const [investorList, setInvestorList] = useState([]);
@@ -113,24 +155,31 @@ const DashboardDefault = () => {
             <Grid item xs={12} sm={6} md={4} lg={3}>
                 <AnalyticEcommerce title="Total Page Views" count="06" percentage={59.3} extra="00" />
             </Grid>
+            
             {/* <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total Investors" count={startupList} percentage={70.5} extra="00" />
-            </Grid>
-            <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total Startups" count={startupList.length} percentage={27.4} isLoss color="warning" extra="00" />
+                <AnalyticEcommerce title="Total Subscriptions" count={subscriptionList.length} percentage={27.4} isLoss color="warning" extra="00" />
             </Grid> */}
-            <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total Subscriptions" count="00" percentage={27.4} isLoss color="warning" extra="00" />
-            </Grid>
 
             <Grid item xs={12} sm={6} md={4} lg={3}>
                 <AnalyticEcommerce title="Total Startups" count={startupList.length} percentage={27.4} isLoss color="warning" extra="00" />
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
+                <AnalyticEcommerce title="Total Investors" count={investorList.length} percentage={27.4} isLoss color="warning" extra="00" />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4} lg={3}>
+                <AnalyticEcommerce title="Total Blog" count={blogList.length} percentage={70.5} extra="00" />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4} lg={3}>
                 <AnalyticEcommerce title="Total Compaigns" count="00" percentage={70.5} extra="00" />
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total News" count="00" percentage={70.5} extra="00" />
+                <AnalyticEcommerce title="Total News" count={newsList.length} percentage={70.5} extra="00" />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4} lg={3}>
+                <AnalyticEcommerce title="Total Campaigns" count={newsList.length} percentage={70.5} extra="00" />
+            </Grid>
+            <Grid item xs={12} sm={6} md={4} lg={3}>
+                <AnalyticEcommerce title="Total Subscriptions" count={subscriptionList.length} percentage={70.5} extra="00" />
             </Grid>
 
             <Grid item md={8} sx={{ display: { sm: 'none', md: 'block', lg: 'none' } }} />

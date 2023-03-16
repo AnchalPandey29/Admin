@@ -78,7 +78,7 @@ const BlogDataGrid = () => {
 
     <DataGrid
         // {...userList}
-        rows={userList.slice(2)}
+        rows={userList.slice()}
         columns = {columns}
         pagination
         getRowId={obj => obj._id}
