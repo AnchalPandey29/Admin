@@ -154,7 +154,7 @@ const DashboardDefault = () => {
                 <Typography variant="h5">Dashboard</Typography>
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total Page Views" count="06" percentage={59.3} extra="00" />
+                <AnalyticEcommerce title="Total Page Views" count="6" percentage={59.3} extra="00" />
             </Grid>
             
             {/* <Grid item xs={12} sm={6} md={4} lg={3}>
@@ -165,19 +165,17 @@ const DashboardDefault = () => {
                 <AnalyticEcommerce title="Total Startups" count={startupList.length} percentage={27.4} isLoss color="warning" extra="00" />
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total Investors" count={investorList.length} percentage={27.4} isLoss color="warning" extra="00" />
+                <AnalyticEcommerce title="Total Investors" count={investorList.length} percentage={27.4}  extra="00" />
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total Blog" count={blogList.length} percentage={70.5} extra="00" />
+                <AnalyticEcommerce title="Total Blog" count={blogList.length} percentage={70.5} isLoss color="warning"extra="00" />
             </Grid>
-            <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total Compaigns" count="00" percentage={70.5} extra="00" />
-            </Grid>
+           
             <Grid item xs={12} sm={6} md={4} lg={3}>
                 <AnalyticEcommerce title="Total News" count={newsList.length} percentage={70.5} extra="00" />
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total Campaigns" count={campaignList.length} percentage={70.5} extra="00" />
+                <AnalyticEcommerce title="Total Campaigns" count={campaignList.length} percentage={70.5} isLoss color="warning"extra="00" />
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
                 <AnalyticEcommerce title="Total Subscriptions" count={subscriptionList.length} percentage={70.5} extra="00" />
@@ -244,9 +242,8 @@ const DashboardDefault = () => {
 
 
             {/* row 3 */}
-            
-            <Grid item xs={12} md={7} lg={8} >
-                
+            <div style={{width:"100%",padding:"20px"}}>
+           
                 <Grid container alignItems="center" justifyContent="space-between">
                     <Grid item>
                         <Typography variant="h5">News DataTable</Typography>
@@ -256,9 +253,10 @@ const DashboardDefault = () => {
                 <MainCard sx={{ mt: 2 }} content={false}>
                     <NewsDataGrid/>
                 </MainCard>
-            </Grid>
-
-            <Grid item xs={12} md={7} lg={8}>
+           
+            </div>
+         
+            <div style={{width:"100%",padding:"20px"}}>
                 <Grid container alignItems="center" justifyContent="space-between">
                     <Grid item>
                         <Typography variant="h5">Blog DataTable</Typography>
@@ -268,9 +266,9 @@ const DashboardDefault = () => {
                 <MainCard sx={{ mt: 2 }} content={false}>
                 <BlogDataGrid/>
                 </MainCard>
-            </Grid>
+            </div>
 
-            <Grid item xs={12} md={7} lg={8}>
+            <div style={{width:"100%",padding:"20px"}}>
                 <Grid container alignItems="center" justifyContent="space-between">
                     <Grid item>
                         <Typography variant="h5">Campaign DataTable</Typography>
@@ -280,9 +278,10 @@ const DashboardDefault = () => {
                 <MainCard sx={{ mt: 2 }} content={false}>
                 <CampaignTable/>
                 </MainCard>
-            </Grid>
+            </div>
 
-            <Grid item xs={12} md={7} lg={8}>
+            
+            <div style={{width:"100%",padding:"20px"}}>
                 <Grid container alignItems="center" justifyContent="space-between">
                     <Grid item>
                         <Typography variant="h5">Startup DataTable</Typography>
@@ -290,14 +289,13 @@ const DashboardDefault = () => {
                     <Grid item />
                 </Grid>
                 <MainCard sx={{ mt: 2 }} content={false}>
-                {/* <UserTable/> */}
-                
+              
                 <StartupDataGrid/>
 
                 </MainCard>
-            </Grid>
-
-            <Grid item xs={12} md={7} lg={8}>
+            </div>
+           
+            <div style={{width:"100%",padding:"20px"}}>
                 <Grid container alignItems="center" justifyContent="space-between">
                     <Grid item>
                         <Typography variant="h5">investor DataTable</Typography>
@@ -307,8 +305,7 @@ const DashboardDefault = () => {
                 <MainCard sx={{ mt: 2 }} content={false}>
                 <InvestorDataGrid/>
                 </MainCard>
-            </Grid>
-
+            </div>
 
 {/*             
             <Grid item xs={12} md={5} lg={4}>
