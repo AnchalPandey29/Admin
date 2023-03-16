@@ -43,6 +43,7 @@ import InvestorDataGrid from './InvestorDataGrid';
 import BlogDataGrid from './BlogDataGrid';
 import NewsDataGrid from './NewsDataGrid';
 import SubscriptionData from './SubscriptionData';
+import CampaignDataTable from './CampaignDataTable';
 // avatar style
 const avatarSX = {
     width: 36,
@@ -86,6 +87,7 @@ const DashboardDefault = () => {
     const [newsList, setNewsList] = useState([]);
     const [campaignList, setCampaignList] = useState([]);
     const [subscriptionList, setSubscriptionList] = useState([]);
+
 
     const fetchStartupData = async () => {
         const res= await fetch('http://localhost:5000/startup/getall');
@@ -277,7 +279,7 @@ const DashboardDefault = () => {
                     <Grid item />
                 </Grid>
                 <MainCard sx={{ mt: 2 }} content={false}>
-                <CampaignTable/>
+                <CampaignDataTable/>
                 </MainCard>
             </div>
 
