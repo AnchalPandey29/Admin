@@ -60,10 +60,11 @@ const StartupDataGrid = () => {
         
                   console.log(thisRow._id);
 
-                return alert(JSON.stringify(thisRow, null, 4));
+                // return alert(JSON.stringify(thisRow, null, 4));
+                return deleteUser(thisRow._id);
               };
         
-              return <Button onClick={() => deleteUser(thisRow._id)}>Delete</Button>;
+              return <Button onClick={onClick}>Delete</Button>;
             }
           },
 

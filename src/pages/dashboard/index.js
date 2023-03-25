@@ -157,7 +157,7 @@ const DashboardDefault = () => {
                 <Typography variant="h5">Dashboard</Typography>
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total Page Views" count="6" percentage={59.3} extra="00" />
+                <AnalyticEcommerce title="Total Page Views" count="156" percentage={59.3} extra="00" />
             </Grid>
             
             {/* <Grid item xs={12} sm={6} md={4} lg={3}>
