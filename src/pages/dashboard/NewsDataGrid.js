@@ -68,7 +68,7 @@ const NewsDataGrid = () => {
 
     const getNewsFromBackend = async () => {
         // send reques
-        const res= await fetch('http://localhost:5000/News/getall');
+        const res= await fetch('http://localhost:5000/news/getall');
 
         // accessing data from response
         const data = await res.json();
@@ -87,7 +87,7 @@ const NewsDataGrid = () => {
 
        const deleteUser = async (id) => {
         console.log(id);
-        const res = await fetch('http://localhost:5000/News/getall'+id, {
+        const res = await fetch('http://localhost:5000/news/getall'+id, {
             method : 'DELETE'
         })
 
