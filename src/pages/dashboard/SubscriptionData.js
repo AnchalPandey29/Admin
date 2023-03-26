@@ -7,6 +7,7 @@ import {
   GridToolbarExport,
   GridToolbarDensitySelector,
 } from '@mui/x-data-grid';
+import { Button } from '../../../node_modules/@mui/material/index';
 // import { useDemoData } from '@mui/x-data-grid-generator';
 
 const CustomToolbar =  () => {
@@ -30,7 +31,7 @@ const SubscriptionData = () => {
           { field: "endDate", headerName: "End Date", width: 200 },
           // { field: "", headerName: "Username", width: 150 },
           // { field: "", headerName: "Plan", width: 200 },
-        
+          
 
           {
             field: "action",
@@ -51,14 +52,14 @@ const SubscriptionData = () => {
                   );
         
                   console.log(thisRow._id);
-
-                // return alert(JSON.stringify(thisRow, null, 4));
-                return <Button onClick={deleteUser(thisRow._id)}>Delete</Button>;
+                  return deleteUser(thisRow._id);
+               // return alert(JSON.stringify(thisRow, null, 4));
               };
-        
-              return 
+              return <Button onClick={onClick}>Delete</Button>
+             // return <Button onClick={( ) => deleteUser(thisRow._id)}>Delete</Button>;
             }
           },
+      
        ];
 
     const getBlogFromBackend = async () => {
@@ -89,7 +90,7 @@ const SubscriptionData = () => {
 
         if(res.status===200){
           getBlogFromBackend();
-            toast.success('User Deleted Successfully!!');
+            toast.success('Subscription Data Deleted Successfully!!');
         }
     }
 

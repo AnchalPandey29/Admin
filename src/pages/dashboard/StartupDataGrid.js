@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import {
   DataGrid,
@@ -60,12 +61,14 @@ const StartupDataGrid = () => {
         
                   console.log(thisRow._id);
 
-                // return alert(JSON.stringify(thisRow, null, 4));
+                //return alert(JSON.stringify(thisRow, null, 4));
                 return deleteUser(thisRow._id);
-              };
+            };
         
-              return <Button onClick={onClick}>Delete</Button>;
+              //return <Button onClick={() => deleteUser(thisRow._id)}>Delete</Button>;
+              return <Button onClick={onClick}>Delete</Button>
             }
+           // return <Button onClick={() => deleteUser(thisRow._id)}>Delete</Button>;
           },
 
      
@@ -84,6 +87,7 @@ const StartupDataGrid = () => {
     useEffect(() => {
         getStartupFromBackend();
       }, [])
+
 
       const handleRowSelection = (e) => {
         console.log(e);

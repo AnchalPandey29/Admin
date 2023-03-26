@@ -7,6 +7,7 @@ import {
   GridToolbarExport,
   GridToolbarDensitySelector,
 } from '@mui/x-data-grid';
+import { Button } from '../../../node_modules/@mui/material/index';
 // import { useDemoData } from '@mui/x-data-grid-generator';
 
 const CustomToolbar =  () => {
@@ -33,30 +34,46 @@ const StartupDataGrid = () => {
     const columns = [
           { field: "_id", headerName: "ID", width: 150 },
           { field: "email", headerName: "Email Address", width: 150 },
-          { field: "name", headerName: "Name", width: 200 },
-          { field: "tel", headerName: "Contact", width: 200 },
-          { field: "created_at", headerName: "Date of creation", width: 200 },
-          { field: "city", headerName: "City", width: 200 },
+          { field: "name", headerName: "Name", width: 140 },
+          { field: "ownername", headerName: "Founder name", width: 130 },
+          { field: "tel", headerName: "Contact", width: 130 },
+          { field: "city", headerName: "City", width: 120 }, 
+          { field: "aadhar", headerName: "Aadhar no", width: 150 },         
           { field: "productdescription", headerName: "Product/Service Detail", width: 200 },
+          {
+            field: "action",
+            headerName: "Action",
+            sortable: false,
+            renderCell: (params) => {
+              const onClick = (e) => {
+                e.stopPropagation(); // don't select this row after clicking
+        
+                const api = params.api;
+                const thisRow = {};
+        
+                api
+                  .getAllColumns()
+                  .filter((c) => c.field !== "__check__" && !!c)
+                  .forEach(
+                    (c) => (thisRow[c.field] = params.getValue(params.id, c.field))
+                  );
+        
+                  console.log(thisRow._id);
 
-      //     {
-      //       field: "email",
-      //       headerName: "Email",
-      //       width: 250,
-      //     },
-      //     {
-      //       field: "password",
-      //       headerName: "Password",
-      //       width: 150,
-      //     },
-      //     {
-      //       field: "profile",
-      //       headerName: "View Profile",
-      //       width: 130,
-      //     },
+                //return alert(JSON.stringify(thisRow, null, 4));
+                return deleteUser(thisRow._id);
+            };
+        
+              //return <Button onClick={() => deleteUser(thisRow._id)}>Delete</Button>;
+              return <Button onClick={onClick}>Delete</Button>
+            }
+           // return <Button onClick={() => deleteUser(thisRow._id)}>Delete</Button>;
+          },
+
+     
         ];
 
-    const getInvestorFromBackend = async () => {
+    const getStartupFromBackend = async () => {
         // send request 
         const res= await fetch('http://localhost:5000/startup/getall');
 
@@ -65,15 +82,28 @@ const StartupDataGrid = () => {
 
         console.log(data.result.filter(obj => obj.role === 'investor'));
         setUserList(data.result.filter(obj => obj.role === 'investor'));
-
     };
     useEffect(() => {
-        getInvestorFromBackend();
+        getStartupFromBackend();
       }, [])
 
       const handleRowSelection = (e) => {
         console.log(e);
       }
+
+     
+
+      const deleteUser = async (id) => {
+        console.log(id);
+        const res = await fetch('http://localhost:5000/startup/delete/'+id, {
+            method : 'DELETE'
+        })
+
+        if(res.status===200){
+          getStartupFromBackend();
+            toast.success('User Deleted Successfully!!');
+        }
+    }
 
   return (
     <div style={{height: '20rem'}}>
@@ -88,7 +118,6 @@ const StartupDataGrid = () => {
           toolbar: CustomToolbar,
         }}
         checkboxSelection
-        onRowSelected={handleRowSelection}
         
         />
         </div>
