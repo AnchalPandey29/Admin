@@ -70,6 +70,35 @@ const StartupDataGrid = () => {
             }
            // return <Button onClick={() => deleteUser(thisRow._id)}>Delete</Button>;
           },
+          {
+            field: "action",
+            headerName: "Action",
+            sortable: false,
+            renderCell: (params) => {
+              const onClick = (e) => {
+                e.stopPropagation(); // don't select this row after clicking
+        
+                const api = params.api;
+                const thisRow = {};
+        
+                api
+                  .getAllColumns()
+                  .filter((c) => c.field !== "__check__" && !!c)
+                  .forEach(
+                    (c) => (thisRow[c.field] = params.getValue(params.id, c.field))
+                  );
+        
+                  console.log(thisRow._id);
+
+                //return alert(JSON.stringify(thisRow, null, 4));
+                return updateUser(thisRow._id);
+            };
+        
+              //return <Button onClick={() => deleteUser(thisRow._id)}>Delete</Button>;
+              return <Button onClick={onClick}>Update</Button>
+            }
+           // return <Button onClick={() => deleteUser(thisRow._id)}>Delete</Button>;
+          },
 
      
         ];
@@ -106,6 +135,17 @@ const StartupDataGrid = () => {
             toast.success('User Deleted Successfully!!');
         }
     }
+    const updateUser = async (id) => {
+      console.log(id);
+      const res = await fetch('http://localhost:5000/startup/update/'+id, {
+          method : 'UPDATE'
+      })
+
+      if(res.status===200){
+        getStartupFromBackend();
+          toast.success('User Data Updated Successfully!!');
+      }
+  }
 
   return (
     <div style={{height: '20rem'}}>
