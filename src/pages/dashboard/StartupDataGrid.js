@@ -25,6 +25,7 @@ const CustomToolbar =  () => {
 const StartupDataGrid = () => {
 
     const [userList, setUserList] = useState([]);
+    const [editable, setEditable] = useState(false);
     // const { data } = useDemoData({
     //     dataSet: 'Commodity',
     //     rowLength: 100,
@@ -70,6 +71,7 @@ const StartupDataGrid = () => {
             }
            // return <Button onClick={() => deleteUser(thisRow._id)}>Delete</Button>;
           },
+        
 
      
         ];
@@ -120,7 +122,6 @@ const StartupDataGrid = () => {
           toolbar: CustomToolbar,
         }}
         checkboxSelection
-        
         />
         </div>
   )
