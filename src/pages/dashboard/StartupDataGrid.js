@@ -9,6 +9,7 @@ import {
   GridToolbarDensitySelector,
 } from '@mui/x-data-grid';
 import { Button } from '../../../node_modules/@mui/material/index';
+import { Navigate } from '../../../node_modules/react-router-dom/dist/index';
 // import { useDemoData } from '@mui/x-data-grid-generator';
 
 const CustomToolbar =  () => {
@@ -25,7 +26,6 @@ const CustomToolbar =  () => {
 const StartupDataGrid = () => {
 
     const [userList, setUserList] = useState([]);
-    const [editable, setEditable] = useState(false);
     // const { data } = useDemoData({
     //     dataSet: 'Commodity',
     //     rowLength: 100,
@@ -61,16 +61,43 @@ const StartupDataGrid = () => {
                   );
         
                   console.log(thisRow._id);
-
-                //return alert(JSON.stringify(thisRow, null, 4));
                 return deleteUser(thisRow._id);
+
             };
         
-              //return <Button onClick={() => deleteUser(thisRow._id)}>Delete</Button>;
               return <Button onClick={onClick}>Delete</Button>
             }
-           // return <Button onClick={() => deleteUser(thisRow._id)}>Delete</Button>;
+              
           },
+
+          {
+            field: "action",
+            headerName: "Update",
+            sortable: false,
+            renderCell: (params) => {
+              const onUpdate = (e) => {
+                e.stopPropagation(); // don't select this row after clicking
+        
+                const api = params.api;
+                const thisRow = {};
+        
+                api
+                  .getAllColumns()
+                  .filter((c) => c.field !== "__check__" && !!c)
+                  .forEach(
+                    (c) => (thisRow[c.field] = params.getValue(params.id, c.field))
+                  );
+        
+                  console.log(thisRow._id);
+                return updateUser(thisRow._id);
+
+            };
+        
+              return <Button onClick={ (onUpdate) => navigate('/pages/dashboard/startupprofile/'+thisRow._id)}>Update</Button>
+            }
+              
+          },
+
 
      
         ];
@@ -107,10 +134,13 @@ const StartupDataGrid = () => {
             toast.success('User Deleted Successfully!!');
         }
     }
+
+
     const updateUser = async (id) => {
       console.log(id);
       const res = await fetch('http://localhost:5000/startup/update/'+id, {
           method : 'UPDATE'
+          
       })
 
       if(res.status===200){
