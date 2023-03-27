@@ -71,7 +71,6 @@ const StartupDataGrid = () => {
             }
            // return <Button onClick={() => deleteUser(thisRow._id)}>Delete</Button>;
           },
-        
 
      
         ];
@@ -108,6 +107,17 @@ const StartupDataGrid = () => {
             toast.success('User Deleted Successfully!!');
         }
     }
+    const updateUser = async (id) => {
+      console.log(id);
+      const res = await fetch('http://localhost:5000/startup/update/'+id, {
+          method : 'UPDATE'
+      })
+
+      if(res.status===200){
+        getStartupFromBackend();
+          toast.success('User Data Updated Successfully!!');
+      }
+  }
 
   return (
     <div style={{height: '20rem'}}>

@@ -8,7 +8,7 @@ import {
   GridToolbarDensitySelector,
 } from '@mui/x-data-grid';
 // import { useDemoData } from '@mui/x-data-grid-generator';
-
+import { Button } from '../../../node_modules/@mui/material/index';
 const CustomToolbar =  () => {
   return (
     <GridToolbarContainer>
@@ -20,7 +20,7 @@ const CustomToolbar =  () => {
   );
 }
 
-const BlogDataGrid = () => {
+const CampaignDataGrid = () => {
 
     const [userList, setUserList] = useState([]);
   
@@ -30,12 +30,37 @@ const BlogDataGrid = () => {
           { field: "lastdate", headerName: "Last Date", width: 200 },
           { field: "title", headerName: "Title", width: 200 },
           { field: "image", headerName: "Image", width: 200 },
+          {
+            field: "action",
+            headerName: "Action",
+            sortable: false,
+            renderCell: (params) => {
+              const onClick = (e) => {
+                e.stopPropagation(); // don't select this row after clicking
         
+                const api = params.api;
+                const thisRow = {};
+        
+                api
+                  .getAllColumns()
+                  .filter((c) => c.field !== "__check__" && !!c)
+                  .forEach(
+                    (c) => (thisRow[c.field] = params.getValue(params.id, c.field))
+                  );
+        
+                  console.log(thisRow._id);
+                  return deleteUser(thisRow._id);
+               // return alert(JSON.stringify(thisRow, null, 4));
+              };
+              return <Button onClick={onClick}>Delete</Button>
+             // return <Button onClick={() => deleteUser(thisRow._id)}>Delete</Button>;
+            }
+          },
        ];
 
-    const getBlogFromBackend = async () => {
+    const getCampaignFromBackend = async () => {
         // send request 
-        const res= await fetch('http://localhost:5000/campaign/getall');
+        const res= await fetch('http://localhost:5000/Campaign/getall');
 
         // accessing data from response
         const data = await res.json();
@@ -45,13 +70,24 @@ const BlogDataGrid = () => {
 
     };
     useEffect(() => {
-        getBlogFromBackend();
+        getCampaignFromBackend();
       }, [])
 
       const handleRowSelection = (e) => {
         console.log(e);
       }
 
+      const deleteUser = async (id) => {
+        console.log(id);
+        const res = await fetch('http://localhost:5000/Campaign/getall'+id, {
+            method : 'DELETE'
+        })
+
+        if(res.status===200){
+          getBlogFromBackend();
+         toast.success('Campaign Data Deleted Successfully!!');
+        }
+    }
   return (
     <div style={{height: '20rem'}}>
 
@@ -72,4 +108,4 @@ const BlogDataGrid = () => {
   )
 }
 
-export default BlogDataGrid
+export default CampaignDataGrid
