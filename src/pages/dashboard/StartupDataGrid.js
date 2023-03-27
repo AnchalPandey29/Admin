@@ -25,6 +25,7 @@ const CustomToolbar =  () => {
 
 const StartupDataGrid = () => {
 
+  const navigate = useNavigate();
     const [userList, setUserList] = useState([]);
     // const { data } = useDemoData({
     //     dataSet: 'Commodity',
@@ -93,7 +94,7 @@ const StartupDataGrid = () => {
 
             };
         
-              return <Button onClick={ (onUpdate) => navigate('/pages/dashboard/startupprofile/'+thisRow._id)}>Update</Button>
+              return <Button onClick={onUpdate}>Update</Button>
             }
               
           },
@@ -139,9 +140,10 @@ const StartupDataGrid = () => {
     const updateUser = async (id) => {
       console.log(id);
       const res = await fetch('http://localhost:5000/startup/update/'+id, {
-          method : 'UPDATE'
-          
+          method : 'UPDATE',
+ 
       })
+      navigate('/pages/dashboard/startup/register');
 
       if(res.status===200){
         getStartupFromBackend();
