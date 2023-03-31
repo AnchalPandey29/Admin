@@ -44,6 +44,8 @@ import BlogDataGrid from './BlogDataGrid';
 import NewsDataGrid from './NewsDataGrid';
 import SubscriptionData from './SubscriptionData';
 import CampaignDataTable from './CampaignDataTable';
+import Contact from './Contact';
+import Chart from './Chart';
 // avatar style
 const avatarSX = {
     width: 36,
@@ -157,7 +159,7 @@ const DashboardDefault = () => {
                 <Typography variant="h5">Dashboard</Typography>
             </Grid>
             <Grid item xs={12} sm={6} md={4} lg={3}>
-                <AnalyticEcommerce title="Total Page Views" count="156" percentage={59.3} extra="00" />
+                <AnalyticEcommerce title="Total Page Views" count="256" percentage={59.3} extra="00" />
             </Grid>
             
             {/* <Grid item xs={12} sm={6} md={4} lg={3}>
@@ -184,7 +186,25 @@ const DashboardDefault = () => {
                 <AnalyticEcommerce title="Total Subscriptions" count={subscriptionList.length} percentage={70.5} extra="00" />
             </Grid>
 
-            <Grid item md={8} sx={{ display: { sm: 'none', md: 'block', lg: 'none' } }} />
+
+            <div style={{width:"100%",padding:"20px"}}>
+           
+           <Grid container alignItems="center" justifyContent="space-between">
+               <Grid item>
+                     <Typography variant="h5">Charts</Typography>
+
+               </Grid>
+               <Grid item />
+           </Grid>
+           <MainCard sx={{ mt: 2 }} content={false} style={{display:"flex",justifyContent:"center"}}>
+           <Chart/>
+
+           </MainCard>
+      
+       </div>
+    
+
+            {/* <Grid item md={8} sx={{ display: { sm: 'none', md: 'block', lg: 'none' } }} /> */}
 
             {/* row 2 */}
 
@@ -319,6 +339,18 @@ const DashboardDefault = () => {
                 </Grid>
                 <MainCard sx={{ mt: 2 }} content={false}>
                     <SubscriptionData/>
+                </MainCard>
+            </div>
+
+            <div style={{width:"100%",padding:"20px"}}>
+                <Grid container alignItems="center" justifyContent="space-between">
+                    <Grid item>
+                        <Typography variant="h5">Contact Data</Typography>
+                    </Grid>
+                    <Grid item />
+                </Grid>
+                <MainCard sx={{ mt: 2 }} content={false}>
+                    <Contact/>
                 </MainCard>
             </div>
 

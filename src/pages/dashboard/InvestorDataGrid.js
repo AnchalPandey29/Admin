@@ -35,11 +35,9 @@ const StartupDataGrid = () => {
           { field: "_id", headerName: "ID", width: 150 },
           { field: "email", headerName: "Email Address", width: 150 },
           { field: "name", headerName: "Name", width: 140 },
-          { field: "ownername", headerName: "Founder name", width: 130 },
           { field: "tel", headerName: "Contact", width: 130 },
           { field: "city", headerName: "City", width: 120 }, 
-          { field: "aadhar", headerName: "Aadhar no", width: 150 },         
-          { field: "productdescription", headerName: "Product/Service Detail", width: 200 },
+          { field: "DIPPTNumber", headerName: "Aadhar no", width: 150 },         
           {
             field: "action",
             headerName: "Action",

@@ -1,60 +1,65 @@
-// // assets
-// import {
-//     AppstoreAddOutlined,
-//     AntDesignOutlined,
-//     BarcodeOutlined,
-//     BgColorsOutlined,
-//     FontSizeOutlined,
-//     LoadingOutlined
-// } from '@ant-design/icons';
+// assets
+import {
+    IdcardOutlined,
+    AppstoreAddOutlined,
+    AntDesignOutlined,
+    BarcodeOutlined,
+    BgColorsOutlined,
+    FontSizeOutlined,
+    ReadOutlined,
+    LoadingOutlined
+} from '@ant-design/icons';
 
-// // icons
-// const icons = {
-//     FontSizeOutlined,
-//     BgColorsOutlined,
-//     BarcodeOutlined,
-//     AntDesignOutlined,
-//     LoadingOutlined,
-//     AppstoreAddOutlined
-// };
+// icons
+const icons = {
+    IdcardOutlined,
+    FontSizeOutlined,
+    BgColorsOutlined,
+    BarcodeOutlined,
+    AntDesignOutlined,
+    LoadingOutlined,
+    ReadOutlined,
+    AppstoreAddOutlined
+};
 
-// // ==============================|| MENU ITEMS - UTILITIES ||============================== //
+// ==============================|| MENU ITEMS - UTILITIES ||============================== //
 
-// const utilities = {
-//     id: 'utilities',
-//     title: 'Utilities',
-//     type: 'group',
-//     children: [
-//         {
-//             id: 'util-typography',
-//             title: 'Typography',
-//             type: 'item',
-//             url: '/typography',
-//             icon: icons.FontSizeOutlined
-//         },
-//         {
-//             id: 'util-color',
-//             title: 'Color',
-//             type: 'item',
-//             url: '/color',
-//             icon: icons.BgColorsOutlined
-//         },
-//         {
-//             id: 'util-shadow',
-//             title: 'Shadow',
-//             type: 'item',
-//             url: '/shadow',
-//             icon: icons.BarcodeOutlined
-//         },
-//         {
-//             id: 'ant-icons',
-//             title: 'Ant Icons',
-//             type: 'item',
-//             url: '/icons/ant',
-//             icon: icons.AntDesignOutlined,
-//             breadcrumbs: false
-//         }
-//     ]
-// };
+const utilities = {
+    id: 'utilities',
+    title: 'Utilities',
+    type: 'group',
+    children: [
+        {
+            id: 'util-typography',
+            title: 'Blog',
+            type: 'item',
+            url: '/blog',
+            icon: icons.AntDesignOutlined
+        },
+        {
+            id: 'util-color',
+            title: 'Campaigns',
+            type: 'item',
+            url: '/campaign',
+            icon: icons.IdcardOutlined
 
-// export default utilities;
+        },
+        {
+            id: 'util-shadow',
+            title: 'News',
+            type: 'item',
+            url: '/shadow',
+            icon: icons.ReadOutlined
+        },
+        {
+            id: 'ant-icons',
+            title: 'Ant Icons',
+            type: 'item',
+            url: '/icons/ant',
+            icon: icons.AntDesignOutlined,
+            breadcrumbs: false
+        }
+    ]
+};
+
+export default utilities;

@@ -7,8 +7,9 @@ import {
   GridToolbarExport,
   GridToolbarDensitySelector,
 } from '@mui/x-data-grid';
-// import { useDemoData } from '@mui/x-data-grid-generator';
 import { Button } from '../../../node_modules/@mui/material/index';
+// import { useDemoData } from '@mui/x-data-grid-generator';
+
 const CustomToolbar =  () => {
   return (
     <GridToolbarContainer>
@@ -20,20 +21,27 @@ const CustomToolbar =  () => {
   );
 }
 
-const CampaignDataGrid = () => {
+const Contact = () => {
 
     const [userList, setUserList] = useState([]);
+    // function formatDate(setUserList) {
+    //   const date = new Date(setUserList.date);
+    //   return date.toLocaleDateString();
+    // }
+    
   
     const columns = [
           { field: "_id", headerName: "ID", width: 150 },
-          { field: "startdate", headerName: "Start Date", width: 100 ,
-          valueFormatter: params => new Date(params?.value).toLocaleDateString()
-        },
-          { field: "lastdate", headerName: "Last Date", width: 150,
-          valueFormatter: params => new Date(params?.value).toLocaleDateString()
-        },
-          { field: "title", headerName: "Title", width: 200 },
-          { field: "image", headerName: "Image", width: 200 },
+        
+          { 
+            field: "date", 
+            headerName: "Date", 
+            width: 150, 
+            valueFormatter: params => new Date().toLocaleDateString()
+          },
+          { field: "name", headerName: "Name", width: 200 },
+          { field: "email", headerName: "Email", width: 200 },
+          { field: "message", headerName: "Message", width: 200 },
           {
             field: "action",
             headerName: "Action",
@@ -62,9 +70,9 @@ const CampaignDataGrid = () => {
           },
        ];
 
-    const getCampaignFromBackend = async () => {
+    const getBlogFromBackend = async () => {
         // send request 
-        const res= await fetch('http://localhost:5000/Campaign/getall');
+        const res= await fetch('http://localhost:5000/contact/getall');
 
         // accessing data from response
         const data = await res.json();
@@ -74,7 +82,7 @@ const CampaignDataGrid = () => {
 
     };
     useEffect(() => {
-        getCampaignFromBackend();
+        getBlogFromBackend();
       }, [])
 
       const handleRowSelection = (e) => {
@@ -83,15 +91,16 @@ const CampaignDataGrid = () => {
 
       const deleteUser = async (id) => {
         console.log(id);
-        const res = await fetch('http://localhost:5000/Campaign/delete/'+id, {
+        const res = await fetch('http://localhost:5000/contact/delete/'+id, {
             method : 'DELETE'
         })
 
         if(res.status===200){
           getBlogFromBackend();
-         toast.success('Campaign Data Deleted Successfully!!');
+         toast.success('Blog Data Deleted Successfully!!');
         }
     }
+
   return (
     <div style={{height: '20rem'}}>
 
@@ -105,11 +114,11 @@ const CampaignDataGrid = () => {
           toolbar: CustomToolbar,
         }}
         checkboxSelection
-        onRowSelected={handleRowSelection}
+       onRowSelected={handleRowSelection}
         
         />
         </div>
   )
 }
 
-export default CampaignDataGrid
+export default Contact

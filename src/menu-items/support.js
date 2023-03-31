@@ -36,7 +36,7 @@ const icons = {
 
 const support = {
     id: 'support',
-    title: 'Support',
+    title: 'Add Content',
     type: 'group',
     children: [
         // {
@@ -48,9 +48,9 @@ const support = {
         // },
         {
             id: 'documentation',
-            title: 'Documentation',
+            title: 'Blog',
             type: 'item',
-            url: 'https://codedthemes.gitbook.io/mantis-react/',
+            url: '/addblog',
             icon: icons.QuestionOutlined,
             external: true,
             target: true

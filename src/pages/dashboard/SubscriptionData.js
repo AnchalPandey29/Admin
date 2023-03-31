@@ -27,12 +27,14 @@ const SubscriptionData = () => {
   
     const columns = [
           { field: "_id", headerName: "ID", width: 150 },
-          { field: "startDate", headerName: "Start Date", width: 200 },
-          { field: "endDate", headerName: "End Date", width: 200 },
-          // { field: "", headerName: "Username", width: 150 },
-          // { field: "", headerName: "Plan", width: 200 },
-          
-
+          { field: "startDate", headerName: "Start Date", width: 100,
+          valueFormatter: params => new Date(params?.value).toLocaleDateString()
+        },
+          { field: "endDate", headerName: "End Date", width: 100,
+          valueFormatter: params => new Date(params?.value).toLocaleDateString()
+        },
+       
+     
           {
             field: "action",
             headerName: "Action",

@@ -9,7 +9,7 @@ import {
   GridToolbarDensitySelector,
 } from '@mui/x-data-grid';
 import { Button } from '../../../node_modules/@mui/material/index';
-import { Navigate } from '../../../node_modules/react-router-dom/dist/index';
+import { Navigate, useNavigate } from '../../../node_modules/react-router-dom/dist/index';
 // import { useDemoData } from '@mui/x-data-grid-generator';
 
 const CustomToolbar =  () => {
@@ -71,33 +71,33 @@ const StartupDataGrid = () => {
               
           },
 
-          {
-            field: "action",
-            headerName: "Update",
-            sortable: false,
-            renderCell: (params) => {
-              const onUpdate = (e) => {
-                e.stopPropagation(); // don't select this row after clicking
+          // {
+          //   field: "action",
+          //   headerName: "Update",
+          //   sortable: false,
+          //   renderCell: (params) => {
+          //     const onUpdate = (e) => {
+          //       e.stopPropagation(); // don't select this row after clicking
         
-                const api = params.api;
-                const thisRow = {};
+          //       const api = params.api;
+          //       const thisRow = {};
         
-                api
-                  .getAllColumns()
-                  .filter((c) => c.field !== "__check__" && !!c)
-                  .forEach(
-                    (c) => (thisRow[c.field] = params.getValue(params.id, c.field))
-                  );
+          //       api
+          //         .getAllColumns()
+          //         .filter((c) => c.field !== "__check__" && !!c)
+          //         .forEach(
+          //           (c) => (thisRow[c.field] = params.getValue(params.id, c.field))
+          //         );
         
-                  console.log(thisRow._id);
-                return updateUser(thisRow._id);
+          //         console.log(thisRow._id);
+          //       return updateUser(thisRow._id);
 
-            };
+          //   };
         
-              return <Button onClick={onUpdate}>Update</Button>
-            }
+          //     return <Button onClick={onUpdate}>Update</Button>
+          //   }
               
-          },
+          // },
 
 
      

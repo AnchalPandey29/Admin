@@ -33,7 +33,9 @@ const NewsDataGrid = () => {
 
     const columns = [
           { field: "_id", headerName: "ID", width: 150 },
-          { field: "date", headerName: "Date", width: 150 },
+          { field: "date", headerName: "Date", width: 150,
+          valueFormatter: params => new Date(params?.value).toLocaleDateString()
+        },
           { field: "heading", headerName: "Heading", width: 200 },
           { field: "content", headerName: "Content", width: 200 },
           { field: "image", headerName: "Image", width: 200 },
@@ -87,7 +89,7 @@ const NewsDataGrid = () => {
 
        const deleteUser = async (id) => {
         console.log(id);
-        const res = await fetch('http://localhost:5000/news/getall'+id, {
+        const res = await fetch('http://localhost:5000/news/delete/'+id, {
             method : 'DELETE'
         })
 
