@@ -99,8 +99,11 @@ const StartupDataGrid = () => {
 
         if(res.status===200){
           getStartupFromBackend();
-            toast.success('User Deleted Successfully!!');
-        }
+          Swal.fire({
+            icon: "success",
+            title: 'Success',
+            text: 'Investor Data Deleted Successfully!!'
+          })        }
     }
 
   return (

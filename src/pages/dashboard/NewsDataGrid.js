@@ -94,9 +94,12 @@ const NewsDataGrid = () => {
         })
 
         if(res.status===200){
-          getStartupFromBackend();
-         toast.success('News Data Deleted Successfully!!');
-        }
+          getNewsFromBackend();
+          Swal.fire({
+            icon: "success",
+            title: 'Success',
+            text: 'News Data Deleted Successfully!!'
+          })        }
     }
 
 

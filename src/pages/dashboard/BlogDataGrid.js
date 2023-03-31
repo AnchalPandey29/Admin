@@ -8,6 +8,7 @@ import {
   GridToolbarDensitySelector,
 } from '@mui/x-data-grid';
 import { Button } from '../../../node_modules/@mui/material/index';
+import Swal from 'sweetalert2';
 // import { useDemoData } from '@mui/x-data-grid-generator';
 
 const CustomToolbar =  () => {
@@ -97,7 +98,11 @@ const BlogDataGrid = () => {
 
         if(res.status===200){
           getBlogFromBackend();
-         toast.success('Blog Data Deleted Successfully!!');
+         Swal.fire({
+          icon: "success",
+          title: 'Success',
+          text: 'Blog Data Deleted Successfully!!'
+        })
         }
     }
 

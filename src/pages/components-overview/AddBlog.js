@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import app_config from "../../config";
+import * as Yup from "yup";
 import AnimateButton from 'components/@extended/AnimateButton';
 
 
@@ -56,6 +57,15 @@ const AddBlog = () => {
     }
   }
 
+  const Schema = Yup.object().shape({
+   
+
+    heading: Yup.string().required("Heading is required"),
+    content: Yup.string().required("Content is required"),
+    date: Yup.string().required("Date is required"),
+    
+  });
+
   const uploadFile = (e) => {
     const file = e.target.files[0];
     setSelImage(file.name);
@@ -80,8 +90,10 @@ const AddBlog = () => {
           <div className="card-body">
           <Typography variant="h3" style={{ textAlign: 'center' }}>Add Blog</Typography>
             <hr />
-            <Formik initialValues={{ heading: "", content: "",image:"" , date:""}} onSubmit={BlogSubmit}>
-             {({ values, handleSubmit, handleChange, isSubmitting }) => (
+            <Formik initialValues={{ heading: "", content: "",image:"" , date:""}}
+                        validationSchema={Schema}//Validation Schema
+            onSubmit={BlogSubmit}>
+             {({ values, handleSubmit, handleChange, isSubmitting,errors, touched}) => (
                <form onSubmit={handleSubmit} >
                  <Grid item xs={12}>
                  <FormControl style={{ width: '100vh' ,marginTop:"20px"}}>
@@ -94,13 +106,13 @@ const AddBlog = () => {
                                         onChange={handleChange}
                                         placeholder="Enter the heading"
                                         fullWidth
-                                        // error={Boolean(touched.email && errors.email)}
+                                        inputProps={{
+                                          maxLength: 100,
+                                        }}
                                     />
-                                    {/* {touched.email && errors.email && (
-                                        <FormHelperText error id="standard-weight-helper-text-email-login">
-                                            {errors.email}
-                                        </FormHelperText>
-                                    )} */}
+                                   {errors.heading && touched.heading  ? <div>{errors.heading }</div> : null}
+
+                                    
                                 </FormControl>
                             </Grid>
                             <Grid item xs={12}>
@@ -114,13 +126,12 @@ const AddBlog = () => {
                                         onChange={handleChange}
                                         placeholder="Enter the content"
                                         fullWidth
-                                        // error={Boolean(touched.email && errors.email)}
+                                        inputProps={{
+                                          maxLength: 500,
+                                        }}
                                     />
-                                    {/* {touched.email && errors.email && (
-                                        <FormHelperText error id="standard-weight-helper-text-email-login">
-                                            {errors.email}
-                                        </FormHelperText>
-                                    )} */}
+                     {errors.content && touched.content  ? <div>{errors.content }</div> : null}
+
                                 </FormControl>
                             </Grid>
                    
@@ -131,13 +142,9 @@ const AddBlog = () => {
                                         type="file"
                                         onChange={uploadFile}                                        
                                         placeholder="Enter the heading"
-                                        // error={Boolean(touched.email && errors.email)}
                                     />
-                                    {/* {touched.email && errors.email && (
-                                        <FormHelperText error id="standard-weight-helper-text-email-login">
-                                            {errors.email}
-                                        </FormHelperText>
-                                    )} */}
+                            {errors.image && touched.image  ? <div>{errors.image }</div> : null}
+
                                 </FormControl>
                             </Grid>
 
@@ -150,13 +157,9 @@ const AddBlog = () => {
                                         name="date"
                                         onChange={handleChange}
                                         fullWidth
-                                        // error={Boolean(touched.email && errors.email)}
                                     />
-                                    {/* {touched.email && errors.email && (
-                                        <FormHelperText error id="standard-weight-helper-text-email-login">
-                                            {errors.email}
-                                        </FormHelperText>
-                                    )} */}
+                         {errors.date && touched.date  ? <div>{errors.date }</div> : null}
+
                                 </FormControl>
                             </Grid>
 

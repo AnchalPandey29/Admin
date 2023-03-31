@@ -13,7 +13,7 @@ const DashboardDefault = Loadable(lazy(() => import('pages/dashboard')));
 // render - utilities
 const Blog = Loadable(lazy(() => import('pages/components-overview/AddBlog')));
 const Campaign = Loadable(lazy(() => import('pages/components-overview/AddCampaign')));
-const Shadow = Loadable(lazy(() => import('pages/components-overview/Shadow')));
+const News = Loadable(lazy(() => import('pages/components-overview/AddNews')));
 const AntIcons = Loadable(lazy(() => import('pages/components-overview/AntIcons')));
 
 // ==============================|| MAIN ROUTING ||============================== //
@@ -41,8 +41,8 @@ const MainRoutes = {
         },
         
         {
-            path: 'shadow',
-            element: <Shadow />
+            path: 'news',
+            element: <News />
         },
         {
             path: 'blog',

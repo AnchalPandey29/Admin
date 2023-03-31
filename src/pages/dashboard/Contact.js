@@ -97,8 +97,11 @@ const Contact = () => {
 
         if(res.status===200){
           getBlogFromBackend();
-         toast.success('Blog Data Deleted Successfully!!');
-        }
+          Swal.fire({
+            icon: "success",
+            title: 'Success',
+            text: 'Contact Data Deleted Successfully!!'
+          })        }
     }
 
   return (

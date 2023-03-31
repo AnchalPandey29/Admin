@@ -19,7 +19,7 @@ import {
 } from "@mui/material";
 import { InputLabel, OutlinedInput,FormControl,  MenuItem, Select, Box, Button  } from '../../../node_modules/@mui/material/index';
 
-const AddCampaign = () => {
+const AddNews = () => {
 
   const url = app_config.apiurl;
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ const AddCampaign = () => {
     // 4. data format - json, etc.
 
     setSubmitting(true);
-    const res = await fetch("http://localhost:5000/campaign/add", {
+    const res = await fetch('http://localhost:5000/News/add', {
       method: "POST",
       body: JSON.stringify(formdata),
       headers: { "Content-Type": "application/json" },
@@ -49,7 +49,7 @@ const AddCampaign = () => {
       Swal.fire({
         icon: "success",
         title: 'Success',
-        text: 'Campaign Added Successfully'
+        text: 'News Added Successfully'
       })
       navigate('/');
     } else {
@@ -72,6 +72,15 @@ const AddCampaign = () => {
     });
   };
 
+
+  const Schema = Yup.object().shape({
+   
+
+    heading: Yup.string().required("Heading is required"),
+    content: Yup.string().required("Content is required"),
+    category: Yup.string().required("Date is required"),
+    
+  });
   return (
   
  
@@ -79,29 +88,30 @@ const AddCampaign = () => {
 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <div className="card " style={{width:"100vh"}}>
           <div className="card-body">
-          <Typography variant="h3" style={{ textAlign: 'center' }}>Add Campaign</Typography>
+          <Typography variant="h3" style={{ textAlign: 'center' }}>Add News</Typography>
             <hr />
-            <Formik initialValues={{ title: "", content: "", startdate: "", lastdate: "" , image:""}} onSubmit={BlogSubmit}>
-             {({ values, handleSubmit, handleChange, isSubmitting }) => (
+            <Formik initialValues={{ heading: "", content: "",image:"" , date:new Date()}}
+                                    validationSchema={Schema}//Validation Schema
+                                    onSubmit={BlogSubmit}>
+             {({ values, handleSubmit, handleChange, isSubmitting,errors, touched})  => (
                <form onSubmit={handleSubmit} >
                  <Grid item xs={12}>
                  <FormControl style={{ width: '100vh' ,marginTop:"20px"}}>
                                     <InputLabel htmlFor="heading">Heading</InputLabel>
                                     <OutlinedInput
-                                        id="title"
+                                        id="heading"
                                         type="text"
-                                        value={values.title}
-                                        name="title"
+                                        value={values.heading}
+                                        name="heading"
                                         onChange={handleChange}
                                         placeholder="Enter the heading"
                                         fullWidth
-                                        // error={Boolean(touched.email && errors.email)}
-                                    />
-                                    {/* {touched.email && errors.email && (
-                                        <FormHelperText error id="standard-weight-helper-text-email-login">
-                                            {errors.email}
-                                        </FormHelperText>
-                                    )} */}
+                                        inputProps={{
+                                            maxLength: 100,
+                                          }}
+                                      />
+                                     {errors.heading && touched.heading  ? <div>{errors.heading }</div> : null}
+  
                                 </FormControl>
                             </Grid>
                             <Grid item xs={12}>
@@ -115,13 +125,12 @@ const AddCampaign = () => {
                                         onChange={handleChange}
                                         placeholder="Enter the content"
                                         fullWidth
-                                        // error={Boolean(touched.email && errors.email)}
-                                    />
-                                    {/* {touched.email && errors.email && (
-                                        <FormHelperText error id="standard-weight-helper-text-email-login">
-                                            {errors.email}
-                                        </FormHelperText>
-                                    )} */}
+                                        inputProps={{
+                                            maxLength: 500,
+                                          }}
+                                      />
+                       {errors.content && touched.content  ? <div>{errors.content }</div> : null}
+  
                                 </FormControl>
                             </Grid>
                    
@@ -131,7 +140,7 @@ const AddCampaign = () => {
                                         id="image"
                                         type="file"
                                         onChange={uploadFile}                                        
-                                        placeholder="Enter the image"
+                                        placeholder="Enter the heading"
                                         // error={Boolean(touched.email && errors.email)}
                                     />
                                     {/* {touched.email && errors.email && (
@@ -142,45 +151,25 @@ const AddCampaign = () => {
                                 </FormControl>
                             </Grid>
 
-                            <Grid item xs={12}>
+                            
                             <FormControl style={{ width: '100vh',marginTop:"20px" }}>
-                                    <OutlinedInput
-                                        id="startdate"
-                                        type="date"                                        
-                                        value={values.startdate}
-                                        name="startdate"
-                                        onChange={handleChange}
-                                        fullWidth
-                                        // error={Boolean(touched.email && errors.email)}
-                                    />
-                                    {/* {touched.email && errors.email && (
-                                        <FormHelperText error id="standard-weight-helper-text-email-login">
-                                            {errors.email}
-                                        </FormHelperText>
-                                    )} */}
-                                </FormControl>
-                            </Grid>
-
-                            <Grid item xs={12}>
-                            <FormControl style={{ width: '100vh',marginTop:"20px" }}>
-                                    <OutlinedInput
-                                        id="lastdate"
-                                        type="date"                                        
-                                        value={values.lastdate}
-                                        name="lastdate"
-                                        onChange={handleChange}
-                                        fullWidth
-                                        // error={Boolean(touched.email && errors.email)}
-                                    />
-                                    {/* {touched.email && errors.email && (
-                                        <FormHelperText error id="standard-weight-helper-text-email-login">
-                                            {errors.email}
-                                        </FormHelperText>
-                                    )} */}
-                                </FormControl>
-                            </Grid>
-
-                         
+  <InputLabel id="category-label">Category</InputLabel>
+  <Select
+    labelId="category-label"
+    id="category-select"
+    name="category"
+    value={values.category}
+    onChange={handleChange}
+  >
+    <MenuItem value=""><em>None</em></MenuItem>
+    <MenuItem value="Inspirational">Inspirational</MenuItem>
+    <MenuItem value="Technology">Technology</MenuItem>
+    <MenuItem value="Entertainment">Entertainment</MenuItem>
+    <MenuItem value="Educational">Educational</MenuItem>
+    <MenuItem value="Consulting">Consulting</MenuItem>
+    <MenuItem value="Marketing">Marketing</MenuItem>
+  </Select>
+</FormControl>
                  
 <Grid item xs={12}>
                                 <AnimateButton>
@@ -209,4 +198,4 @@ const AddCampaign = () => {
   )
 }
 
-export default AddCampaign;
+export default AddNews;

@@ -92,8 +92,11 @@ const SubscriptionData = () => {
 
         if(res.status===200){
           getBlogFromBackend();
-            toast.success('Subscription Data Deleted Successfully!!');
-        }
+          Swal.fire({
+            icon: "success",
+            title: 'Success',
+            text: 'Subscription Data Deleted Successfully!!'
+          })        }
     }
 
   return (

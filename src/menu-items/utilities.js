@@ -48,7 +48,7 @@ const utilities = {
             id: 'util-shadow',
             title: 'News',
             type: 'item',
-            url: '/shadow',
+            url: '/news',
             icon: icons.ReadOutlined
         },
         {

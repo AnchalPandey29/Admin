@@ -88,9 +88,12 @@ const CampaignDataGrid = () => {
         })
 
         if(res.status===200){
-          getBlogFromBackend();
-         toast.success('Campaign Data Deleted Successfully!!');
-        }
+          getCampaignFromBackend();
+          Swal.fire({
+            icon: "success",
+            title: 'Success',
+            text: 'Campaign Data Deleted Successfully!!'
+          })        }
     }
   return (
     <div style={{height: '20rem'}}>
