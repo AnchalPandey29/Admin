@@ -223,7 +223,7 @@ export default function OrderTable() {
                                     <TableCell align="left">{new Date(row.date).toLocaleDateString()}
                                     </TableCell>
                                     <TableCell align="left">
-                                    {row.content}
+                                    {row.content.substring(1, 50)}...
                                         {/* <OrderStatus status={row.carbs} /> */}
                                     </TableCell>
                                 </TableRow>

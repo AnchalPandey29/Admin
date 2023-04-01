@@ -8,8 +8,9 @@ import {
   GridToolbarExport,
   GridToolbarDensitySelector,
 } from '@mui/x-data-grid';
-import { Button } from '../../../node_modules/@mui/material/index';
+import { Button, Modal, Box } from '../../../node_modules/@mui/material/index';
 import { Navigate, useNavigate } from '../../../node_modules/react-router-dom/dist/index';
+import {Formik} from 'formik';
 // import { useDemoData } from '@mui/x-data-grid-generator';
 
 const CustomToolbar =  () => {
@@ -27,6 +28,8 @@ const StartupDataGrid = () => {
 
   const navigate = useNavigate();
     const [userList, setUserList] = useState([]);
+    const [open, setOpen] = useState(false);
+    const [selStartup, setSelStartup] = useState(null);
     // const { data } = useDemoData({
     //     dataSet: 'Commodity',
     //     rowLength: 100,
@@ -67,6 +70,34 @@ const StartupDataGrid = () => {
             };
         
               return <Button onClick={onClick}>Delete</Button>
+            }
+              
+          },
+          {
+            field: "action2",
+            headerName: "Action",
+            sortable: false,
+            renderCell: (params) => {
+              const onClick = (e) => {
+                e.stopPropagation(); // don't select this row after clicking
+        
+                const api = params.api;
+                const thisRow = {};
+        
+                api
+                  .getAllColumns()
+                  .filter((c) => c.field !== "__check__" && !!c)
+                  .forEach(
+                    (c) => (thisRow[c.field] = params.getValue(params.id, c.field))
+                  );
+        
+                  console.log(thisRow._id);
+                  return setSelStartup(thisRow);
+                // return deleteUser(thisRow._id);
+
+            };
+        
+              return <Button onClick={onClick}> Edit</Button>
             }
               
           },
@@ -154,8 +185,151 @@ const StartupDataGrid = () => {
       }
   }
 
+  const userSubmit = async (formdata, { setSubmitting }) => {
+    
+    setSubmitting(true);
+    const res = await fetch(`http://localhost:5000/startup/update/${formdata._id}`, {
+      method: "PUT",
+      body: JSON.stringify(formdata),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    console.log(res.status);
+    setSubmitting(false);
+
+    //pop up
+    if (res.status === 201) {
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: "You have updated successfully",
+      });
+
+      
+  };
+
+}
+
   return (
     <div style={{height: '20rem'}}>
+      <Modal
+        open={open && selStartup !==null}
+        onClose={() => setOpen(false)}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box>
+        <Formik
+                initialValues={selStartup}
+                // validationSchema={SignupSchema} // Add the validation schema here
+                onSubmit={userSubmit}
+              >
+                {({
+                  values,
+                  handleSubmit,
+                  handleChange,
+                  isSubmitting,
+                  errors,
+                  touched,
+                }) => (
+                  <form onSubmit={handleSubmit}>
+                    {/* 2 column grid layout with text inputs for the first and last names */}
+                    <div className="row form-floating" onSubmit={handleSubmit}>
+                      <div className="col">
+                        <div className="form-outline mb-4">
+                          <MDBInput
+                            label="Name"
+                            type="text"
+                            value={values.name}
+                            onChange={handleChange}
+                            name="name"
+                          />
+                          {errors.name && touched.name ? (
+                            <div>{errors.name}</div>
+                          ) : null}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Email input */}
+                    <div className="form-outline mb-4">
+                      <MDBInput
+                        label="Email"
+                        type="email"
+                        value={values.email}
+                        onChange={handleChange}
+                        name="email"
+                      />
+                      {errors.email && touched.email ? (
+                        <div>{errors.email}</div>
+                      ) : null}
+                    </div>
+
+                    {/* Password input */}
+                    <div className="form-outline mb-4">
+                      <MDBInput
+                        label="Password"
+                        type="password"
+                        value={values.password}
+                        onChange={handleChange}
+                        name="password"
+                      />
+                      {errors.password && touched.password ? (
+                        <div>{errors.password}</div>
+                      ) : null}
+                    </div>
+                    <div>
+                      <FormControl className="ps-3 pb-4">
+                        <FormLabel id="demo-radio-buttons-group-label">
+                          Role
+                        </FormLabel>
+                        <RadioGroup
+                          aria-labelledby="demo-radio-buttons-group-label"
+                          defaultValue="startup"
+                          onChange={(e, v) => setSelRole(v)}
+                          value={selRole}
+                        >
+                          <div className="">
+                            <FormControlLabel
+                              value="startup"
+                              control={<Radio />}
+                              label="Startup"
+                            />
+                            <FormControlLabel
+                              value="investor"
+                              control={<Radio />}
+                              label="Investor"
+                            />
+                            <FormControlLabel
+                              value="user"
+                              control={<Radio />}
+                              label="Common User"
+                            />
+                          </div>
+                        </RadioGroup>
+                      </FormControl>
+                    </div>
+
+                   
+                    <div>
+                      <button
+                        className="btn"
+                        type="submit"
+                        style={{
+                          backgroundColor: "#9c3353",
+                          color: "#fffefe",
+                          width: "100%",
+                        }}
+                      >
+                        Submit
+                      </button>
+                    </div>
+                    
+                  </form>
+                )}
+              </Formik>
+        </Box>
+      </Modal>
 
     <DataGrid
         // {...userList}
