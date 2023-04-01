@@ -144,6 +144,8 @@ const AddCampaign = () => {
 
                             <Grid item xs={12}>
                             <FormControl style={{ width: '100vh',marginTop:"20px" }}>
+                            <label  htmlFor="startdate">Start Date</label>
+
                                     <OutlinedInput
                                         id="startdate"
                                         type="date"                                        
@@ -163,6 +165,8 @@ const AddCampaign = () => {
 
                             <Grid item xs={12}>
                             <FormControl style={{ width: '100vh',marginTop:"20px" }}>
+                            <label  htmlFor="lastdate">Last Date</label>
+
                                     <OutlinedInput
                                         id="lastdate"
                                         type="date"                                        

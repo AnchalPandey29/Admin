@@ -63,7 +63,7 @@ const AddBlog = () => {
     heading: Yup.string().required("Heading is required"),
     content: Yup.string().required("Content is required"),
     date: Yup.string().required("Date is required"),
-    
+    category:  Yup.string().required("Category is required")
   });
 
   const uploadFile = (e) => {
@@ -180,6 +180,8 @@ const AddBlog = () => {
     <MenuItem value="Consulting">Consulting</MenuItem>
     <MenuItem value="Marketing">Marketing</MenuItem>
   </Select>
+  {errors.category && touched.category  ? <div>{errors.category }</div> : null}
+
 </FormControl>
                  
 <Grid item xs={12}>

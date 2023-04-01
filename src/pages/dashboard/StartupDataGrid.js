@@ -92,7 +92,7 @@ const StartupDataGrid = () => {
                   );
         
                   console.log(thisRow._id);
-                  return setSelStartup(thisRow);
+                  return updateUser(thisRow._id);
                 // return deleteUser(thisRow._id);
 
             };
@@ -101,34 +101,6 @@ const StartupDataGrid = () => {
             }
               
           },
-
-          // {
-          //   field: "action",
-          //   headerName: "Update",
-          //   sortable: false,
-          //   renderCell: (params) => {
-          //     const onUpdate = (e) => {
-          //       e.stopPropagation(); // don't select this row after clicking
-        
-          //       const api = params.api;
-          //       const thisRow = {};
-        
-          //       api
-          //         .getAllColumns()
-          //         .filter((c) => c.field !== "__check__" && !!c)
-          //         .forEach(
-          //           (c) => (thisRow[c.field] = params.getValue(params.id, c.field))
-          //         );
-        
-          //         console.log(thisRow._id);
-          //       return updateUser(thisRow._id);
-
-          //   };
-        
-          //     return <Button onClick={onUpdate}>Update</Button>
-          //   }
-              
-          // },
 
 
      
@@ -177,7 +149,7 @@ const StartupDataGrid = () => {
           method : 'UPDATE',
  
       })
-      navigate('/pages/dashboard/startup/register');
+      navigate('/pages/components-overview/AddBlog.js');
 
       if(res.status===200){
         getStartupFromBackend();

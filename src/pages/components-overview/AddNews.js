@@ -169,6 +169,8 @@ const AddNews = () => {
     <MenuItem value="Consulting">Consulting</MenuItem>
     <MenuItem value="Marketing">Marketing</MenuItem>
   </Select>
+  {errors.category && touched.category  ? <div>{errors.category }</div> : null}
+
 </FormControl>
                  
 <Grid item xs={12}>

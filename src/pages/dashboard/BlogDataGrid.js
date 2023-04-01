@@ -69,6 +69,34 @@ const BlogDataGrid = () => {
              // return <Button onClick={() => deleteUser(thisRow._id)}>Delete</Button>;
             }
           },
+          {
+            field: "action2",
+            headerName: "Action",
+            sortable: false,
+            renderCell: (params) => {
+              const onClick = (e) => {
+                e.stopPropagation(); // don't select this row after clicking
+        
+                const api = params.api;
+                const thisRow = {};
+        
+                api
+                  .getAllColumns()
+                  .filter((c) => c.field !== "__check__" && !!c)
+                  .forEach(
+                    (c) => (thisRow[c.field] = params.getValue(params.id, c.field))
+                  );
+        
+                  console.log(thisRow._id);
+                  return updateUser(thisRow._id);
+                // return deleteUser(thisRow._id);
+
+            };
+        
+              return <Button onClick={onClick}> Edit</Button>
+            }
+              
+          },
        ];
 
     const getBlogFromBackend = async () => {
@@ -105,6 +133,20 @@ const BlogDataGrid = () => {
         })
         }
     }
+
+    const updateUser = async (id) => {
+      console.log(id);
+      const res = await fetch('http://localhost:5000/Blog/update/'+id, {
+          method : 'UPDATE',
+ 
+      })
+      navigate('/pages/components-overview/AddBlog.js');
+
+      if(res.status===200){
+        getStartupFromBackend();
+          toast.success('User Data Updated Successfully!!');
+      }
+  }
 
   return (
     <div style={{height: '20rem'}}>
