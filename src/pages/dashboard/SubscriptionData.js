@@ -33,6 +33,12 @@ const SubscriptionData = () => {
           { field: "endDate", headerName: "End Date", width: 100,
           valueFormatter: params => new Date(params?.value).toLocaleDateString()
         },
+          { field: "data", headerName: "Customer Name", width: 100,
+          renderCell: details => {
+            console.log(details);
+            return details.row.data.customer_details.name
+          }
+        },
        
      
           {
