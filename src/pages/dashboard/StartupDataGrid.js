@@ -8,7 +8,7 @@ import {
   GridToolbarExport,
   GridToolbarDensitySelector,
 } from '@mui/x-data-grid';
-import { Button, Modal, Box } from '../../../node_modules/@mui/material/index';
+import { Button, Modal, Box, FormControl, FormControlLabel, Radio, RadioGroup, FormLabel } from '../../../node_modules/@mui/material/index';
 import { Navigate, useNavigate } from '../../../node_modules/react-router-dom/dist/index';
 import {Formik} from 'formik';
 // import { useDemoData } from '@mui/x-data-grid-generator';
@@ -91,9 +91,11 @@ const StartupDataGrid = () => {
                     (c) => (thisRow[c.field] = params.getValue(params.id, c.field))
                   );
         
-                  console.log(thisRow._id);
-                  return updateUser(thisRow._id);
+                  console.log(thisRow);
+                  // return updateUser(thisRow._id);
                 // return deleteUser(thisRow._id);
+                setSelStartup(thisRow);
+                setOpen(true);
 
             };
         
@@ -170,7 +172,8 @@ const StartupDataGrid = () => {
     setSubmitting(false);
 
     //pop up
-    if (res.status === 201) {
+    if (res.status === 200) {
+      setOpen(false);
       Swal.fire({
         icon: "success",
         title: "Success",
@@ -189,6 +192,7 @@ const StartupDataGrid = () => {
         onClose={() => setOpen(false)}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        style={{backgroundColor: 'white'}}
       >
         <Box>
         <Formik
@@ -209,7 +213,7 @@ const StartupDataGrid = () => {
                     <div className="row form-floating" onSubmit={handleSubmit}>
                       <div className="col">
                         <div className="form-outline mb-4">
-                          <MDBInput
+                          <input
                             label="Name"
                             type="text"
                             value={values.name}
@@ -225,7 +229,8 @@ const StartupDataGrid = () => {
 
                     {/* Email input */}
                     <div className="form-outline mb-4">
-                      <MDBInput
+                      <input
+                      className='form-control'
                         label="Email"
                         type="email"
                         value={values.email}
@@ -239,7 +244,7 @@ const StartupDataGrid = () => {
 
                     {/* Password input */}
                     <div className="form-outline mb-4">
-                      <MDBInput
+                      <input
                         label="Password"
                         type="password"
                         value={values.password}
@@ -251,35 +256,7 @@ const StartupDataGrid = () => {
                       ) : null}
                     </div>
                     <div>
-                      <FormControl className="ps-3 pb-4">
-                        <FormLabel id="demo-radio-buttons-group-label">
-                          Role
-                        </FormLabel>
-                        <RadioGroup
-                          aria-labelledby="demo-radio-buttons-group-label"
-                          defaultValue="startup"
-                          onChange={(e, v) => setSelRole(v)}
-                          value={selRole}
-                        >
-                          <div className="">
-                            <FormControlLabel
-                              value="startup"
-                              control={<Radio />}
-                              label="Startup"
-                            />
-                            <FormControlLabel
-                              value="investor"
-                              control={<Radio />}
-                              label="Investor"
-                            />
-                            <FormControlLabel
-                              value="user"
-                              control={<Radio />}
-                              label="Common User"
-                            />
-                          </div>
-                        </RadioGroup>
-                      </FormControl>
+                      
                     </div>
 
                    
