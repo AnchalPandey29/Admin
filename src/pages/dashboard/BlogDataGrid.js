@@ -42,6 +42,7 @@ const BlogDataGrid = () => {
     const [userList, setUserList] = useState([]);
     const [open, setOpen] = useState(false);
     const [selBlog, setselBlog] = useState(null);
+    const [selImage, setSelImage] = useState('');
     // function formatDate(setUserList) {
     //   const date = new Date(setUserList.date);
     //   return date.toLocaleDateString();
@@ -58,6 +59,7 @@ const BlogDataGrid = () => {
         },
         { field: 'heading', headerName: 'Heading', width: 200 },
         { field: 'content', headerName: 'Content', width: 200 },
+        { field: 'category', headerName: 'Category', width: 200 },
         { field: 'image', headerName: 'Image', width: 200 },
         {
             field: 'action',
@@ -101,7 +103,7 @@ const BlogDataGrid = () => {
                     // return updateUser(thisRow._id);
                     // return deleteUser(thisRow._id);
                     setselBlog(thisRow);
-                    setSelImage(thisRow.image);
+                    // setSelImage(thisRow.image);
                     setOpen(true);
                 };
 
@@ -173,6 +175,7 @@ const BlogDataGrid = () => {
     };
 
     const userSubmit = async (formdata, { setSubmitting }) => {
+        formdata.image = selImage;
         setSubmitting(true);
         const res = await fetch(`http://localhost:5000/Blog/update/${selBlog._id}`, {
             method: 'PUT',
@@ -248,22 +251,22 @@ const BlogDataGrid = () => {
 
                                 <Grid item xs={12}>
                                     <FormControl style={{ width: '100vh', marginTop: '20px' }}>
-                                        <OutlinedInput id="image" type="file" onChange={uploadFile} placeholder="Enter the heading" />
-                                        {errors.image && touched.image ? <div>{errors.image}</div> : null}
+                                        <OutlinedInput  type="file" onChange={uploadFile} placeholder="Upload Image" />
+                                        {/* {errors.image && touched.image ? <div>{errors.image}</div> : null} */}
                                     </FormControl>
                                 </Grid>
 
                                 <Grid item xs={12}>
                                     <FormControl >
-                                        {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                        <LocalizationProvider dateAdapter={AdapterDayjs}>
                                         <DemoContainer components={['DatePicker']}>
                                             <DatePicker label="Date" />
                                             </DemoContainer>
-                                        </LocalizationProvider> */}
+                                        </LocalizationProvider>
                                         <OutlinedInput
                                         id="date"
                                         type="date"                                        
-                                        value={values.date}
+                                        value={values.date.slice(0, 10)}
                                         name="date"
                                         onChange={handleChange}
                                         fullWidth
@@ -277,7 +280,7 @@ const BlogDataGrid = () => {
                                     <InputLabel id="category-label">Category</InputLabel>
                                     <Select
                                         labelId="category-label"
-                                        id="category-select"
+                                        id="category"
                                         name="category"
                                         value={values.category}
                                         onChange={handleChange}
