@@ -51,14 +51,14 @@ const utilities = {
             url: '/news',
             icon: icons.ReadOutlined
         },
-        {
-            id: 'ant-icons',
-            title: 'Ant Icons',
-            type: 'item',
-            url: '/icons/ant',
-            icon: icons.AntDesignOutlined,
-            breadcrumbs: false
-        }
+        // {
+        //     id: 'ant-icons',
+        //     title: 'Ant Icons',
+        //     type: 'item',
+        //     url: '/icons/ant',
+        //     icon: icons.AntDesignOutlined,
+        //     breadcrumbs: false
+        // }
     ]
 };
 
