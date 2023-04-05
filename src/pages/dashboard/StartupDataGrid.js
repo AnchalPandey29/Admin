@@ -180,10 +180,7 @@ const StartupDataGrid = () => {
         title: "Success",
         text: "You have updated successfully",
       });
-
-      
   };
-
 }
 
   return (
