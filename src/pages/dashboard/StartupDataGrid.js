@@ -45,6 +45,7 @@ const StartupDataGrid = () => {
           { field: "tel", headerName: "Contact", width: 130 },
           { field: "city", headerName: "City", width: 120 }, 
           { field: "aadhar", headerName: "Aadhar no", width: 150 },         
+
           { field: "productdescription", headerName: "Product/Service Detail", width: 200 },
           {
             field: "action",

@@ -210,7 +210,7 @@ const BlogDataGrid = () => {
             >
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', background: 'white', height: '100vh' }}>
                     <Formik initialValues={selBlog} onSubmit={userSubmit}>
-                        {({ values, handleSubmit, handleChange, isSubmitting, errors, touched }) => (
+     {({ values, handleSubmit, handleChange, isSubmitting, errors, touched }) => (
                             <form onSubmit={handleSubmit}>
                                 <Grid item xs={12}>
                                     <FormControl style={{ width: '100vh', marginTop: '20px' }}>
