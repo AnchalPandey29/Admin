@@ -13,7 +13,7 @@ const AdminAuth = ({children}) => {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'You are not authorized to access this page!',
+            text: 'Please login first!',
         });
         
         return <Navigate to="/login" />

@@ -74,39 +74,7 @@ const StartupDataGrid = () => {
             }
               
           },
-          {
-            field: "action2",
-            headerName: "Action",
-            sortable: false,
-            renderCell: (params) => {
-              const onClick = (e) => {
-                e.stopPropagation(); // don't select this row after clicking
         
-                const api = params.api;
-                const thisRow = {};
-        
-                api
-                  .getAllColumns()
-                  .filter((c) => c.field !== "__check__" && !!c)
-                  .forEach(
-                    (c) => (thisRow[c.field] = params.getValue(params.id, c.field))
-                  );
-        
-                  console.log(thisRow);
-                  // return updateUser(thisRow._id);
-                // return deleteUser(thisRow._id);
-                setSelStartup(thisRow);
-                setOpen(true);
-
-            };
-        
-              return <Button onClick={onClick}> Edit</Button>
-            }
-              
-          },
-
-
-     
         ];
 
     const getStartupFromBackend = async () => {
@@ -185,99 +153,7 @@ const StartupDataGrid = () => {
 
   return (
     <div style={{height: '20rem'}}>
-      <Modal
-        open={open && selStartup !==null}
-        onClose={() => setOpen(false)}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-        style={{backgroundColor: 'white'}}
-      >
-        <Box>
-        <Formik
-                initialValues={selStartup}
-                // validationSchema={SignupSchema} // Add the validation schema here
-                onSubmit={userSubmit}
-              >
-                {({
-                  values,
-                  handleSubmit,
-                  handleChange,
-                  isSubmitting,
-                  errors,
-                  touched,
-                }) => (
-                  <form onSubmit={handleSubmit}>
-                    {/* 2 column grid layout with text inputs for the first and last names */}
-                    <div className="row form-floating" onSubmit={handleSubmit}>
-                      <div className="col">
-                        <div className="form-outline mb-4">
-                          <input
-                            label="Name"
-                            type="text"
-                            value={values.name}
-                            onChange={handleChange}
-                            name="name"
-                          />
-                          {errors.name && touched.name ? (
-                            <div>{errors.name}</div>
-                          ) : null}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Email input */}
-                    <div className="form-outline mb-4">
-                      <input
-                      className='form-control'
-                        label="Email"
-                        type="email"
-                        value={values.email}
-                        onChange={handleChange}
-                        name="email"
-                      />
-                      {errors.email && touched.email ? (
-                        <div>{errors.email}</div>
-                      ) : null}
-                    </div>
-
-                    {/* Password input */}
-                    <div className="form-outline mb-4">
-                      <input
-                        label="Password"
-                        type="password"
-                        value={values.password}
-                        onChange={handleChange}
-                        name="password"
-                      />
-                      {errors.password && touched.password ? (
-                        <div>{errors.password}</div>
-                      ) : null}
-                    </div>
-                    <div>
-                      
-                    </div>
-
-                   
-                    <div>
-                      <button
-                        className="btn"
-                        type="submit"
-                        style={{
-                          backgroundColor: "#9c3353",
-                          color: "#fffefe",
-                          width: "100%",
-                        }}
-                      >
-                        Submit
-                      </button>
-                    </div>
-                    
-                  </form>
-                )}
-              </Formik>
-        </Box>
-      </Modal>
-
+    
     <DataGrid
         // {...userList}
         rows={userList.slice()}

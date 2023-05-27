@@ -42,11 +42,12 @@ const CampaignDataGrid = () => {
           { field: "startdate", headerName: "Start Date", width: 100 ,
           valueFormatter: params => new Date(params?.value).toLocaleDateString()
         },
-          { field: "lastdate", headerName: "Last Date", width: 150,
+          { field: "lastdate", headerName: "Last Date", width: 100,
           valueFormatter: params => new Date(params?.value).toLocaleDateString()
         },
           { field: "title", headerName: "Title", width: 200 },
-          { field: "image", headerName: "Image", width: 200 },
+          { field: 'content', headerName: 'Content', width: 200 },
+          { field: "image", headerName: "Image", width: 100 },
           {
             field: "action",
             headerName: "Action",
@@ -89,10 +90,8 @@ const CampaignDataGrid = () => {
                         .forEach((c) => (thisRow[c.field] = params.getValue(params.id, c.field)));
 
                     console.log(thisRow);
-                    // return updateUser(thisRow._id);
-                    // return deleteUser(thisRow._id);
+                  
                     setselCampaign(thisRow);
-                    // setSelImage(thisRow.image);
                     setOpen(true);
                 };
 
@@ -134,18 +133,7 @@ const CampaignDataGrid = () => {
             text: 'Campaign Data Deleted Successfully!!'
           })        }
     };
-    const updateUser = async (id) => {
-      console.log(id);
-      const res = await fetch('http://localhost:5000/Campaign/update/' + id, {
-          method: 'UPDATE'
-      });
-      navigate('/pages/components-overview/AddCampaign.js');
-
-      if (res.status === 200) {
-          getStartupFromBackend();
-          toast.success('Campaign Data Updated Successfully!!');
-      }
-  };
+ 
   const uploadFile = (e) => {
     const file = e.target.files[0];
     setSelImage(file.name);
@@ -193,6 +181,7 @@ const userSubmit = async (formdata, { setSubmitting }) => {
        aria-labelledby="modal-modal-title"
        aria-describedby="modal-modal-description"
        style={{ backgroundColor: 'white' }}>
+
        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', background: 'white', height: '100vh' }}>
       
        <Formik initialValues={selCampaign} onSubmit={userSubmit}>
@@ -209,13 +198,9 @@ const userSubmit = async (formdata, { setSubmitting }) => {
                                         onChange={handleChange}
                                         placeholder="Enter the heading"
                                         fullWidth
-                                        // error={Boolean(touched.email && errors.email)}
+                                        
                                     />
-                                    {/* {touched.email && errors.email && (
-                                        <FormHelperText error id="standard-weight-helper-text-email-login">
-                                            {errors.email}
-                                        </FormHelperText>
-                                    )} */}
+                                    
                                 </FormControl>
                             </Grid>
                             <Grid item xs={12}>
@@ -232,15 +217,11 @@ const userSubmit = async (formdata, { setSubmitting }) => {
                                         inputProps={{
                                           maxLength: 500
                                       }}
-                                        // error={Boolean(touched.email && errors.email)}
                                     />
-                                    {/* {touched.email && errors.email && (
-                                        <FormHelperText error id="standard-weight-helper-text-email-login">
-                                            {errors.email}
-                                        </FormHelperText>
-                                    )} */}
+                                    
                                 </FormControl>
                             </Grid>
+                 
                    
                             <Grid item xs={12}>
                             <FormControl style={{ width: '100vh',marginTop:"20px" }}>
@@ -249,31 +230,27 @@ const userSubmit = async (formdata, { setSubmitting }) => {
                                         type="file"
                                         onChange={uploadFile}                                        
                                         placeholder="Enter the image"
-                                        // error={Boolean(touched.email && errors.email)}
                                     />
-                                    {/* {touched.email && errors.email && (
-                                        <FormHelperText error id="standard-weight-helper-text-email-login">
-                                            {errors.email}
-                                        </FormHelperText>
-                                    )} */}
+                                    
                                 </FormControl>
                             </Grid>
 
+                            
                             <Grid item xs={12}>
                             <FormControl >
                            < LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DemoContainer components={['DatePicker']}>
-                                <DatePicker label=" StartDate" />
+                                <DatePicker label=" Start Date" />
                                 </DemoContainer>
                             </LocalizationProvider>
                            
 
-                            <label  htmlFor="startdate">Start Date</label>
+                            <label style={{marginBottom:"-20px",marginTop:"10px"}} htmlFor="startdate">Start Date</label>
 
                                     <OutlinedInput
                                         id="startdate"
                                         type="date"                                        
-                                        value={values.startdate}
+                                        value={values.startdate.slice(0, 10)}
                                         name="startdate"
                                         onChange={handleChange}
                                         fullWidth
@@ -291,32 +268,30 @@ const userSubmit = async (formdata, { setSubmitting }) => {
 
                             <Grid item xs={12}>
                             <FormControl >
-                            <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        <DemoContainer components={['DatePicker']}>
-                                            <DatePicker label="LatDate" />
-                                            </DemoContainer>
-                                        </LocalizationProvider>
-                                        <OutlinedInput
+                           < LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DemoContainer components={['DatePicker']}>
+                                <DatePicker label="last Date" />
+                                </DemoContainer>
+                            </LocalizationProvider>
+                           
+
+                            <label style={{marginBottom:"-20px",marginTop:"10px"}} htmlFor="lastdate">Last Date</label>
+
+                                    <OutlinedInput
                                         id="lastdate"
                                         type="date"                                        
-                                        value={values.lastdate}
+                                        value={values.lastdate.slice(0, 10)}
                                         name="lastdate"
                                         onChange={handleChange}
-                                        fullWidth // error={Boolean(touched.email && errors.email)}
+                                        fullWidth
+                                        style={{ width: '100vh', marginTop: '20px' }}
                                     />
-                            style={{ width: '100vh',marginTop:"20px" }}
-                            {errors.lastdate && touched.lastdate ? <div>{errors.lastdate}</div> : null}
-                            {/* <label  htmlFor="lastdate">Last Date</label> */}
-
                                     
-                                      
-                                   
+                                    {errors.lastdate && touched.lastdate ? <div>{errors.lastdate}</div> : null}
                                 </FormControl>
                             </Grid>
 
-                         
-                 
-<Grid item xs={12}>
+                            <Grid item xs={12}>
                                 <AnimateButton>
                                     <Button
                                     style={{ width: '100vh',marginTop:"20px" }}

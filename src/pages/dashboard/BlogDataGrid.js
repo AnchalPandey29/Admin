@@ -54,13 +54,13 @@ const BlogDataGrid = () => {
         {
             field: 'date',
             headerName: 'Date',
-            width: 150,
+            width: 100,
             valueFormatter: (params) => new Date(params?.value).toLocaleDateString()
         },
         { field: 'heading', headerName: 'Heading', width: 200 },
         { field: 'content', headerName: 'Content', width: 200 },
-        { field: 'category', headerName: 'Category', width: 200 },
-        { field: 'image', headerName: 'Image', width: 200 },
+        { field: 'category', headerName: 'Category', width: 100 },
+        { field: 'image', headerName: 'Image', width: 150 },
         {
             field: 'action',
             headerName: 'Action',
@@ -208,10 +208,15 @@ const BlogDataGrid = () => {
                 aria-describedby="modal-modal-description"
                 style={{ backgroundColor: 'white' }}
             >
+                
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', background: 'white', height: '100vh' }}>
+                    
                     <Formik initialValues={selBlog} onSubmit={userSubmit}>
      {({ values, handleSubmit, handleChange, isSubmitting, errors, touched }) => (
+        
                             <form onSubmit={handleSubmit}>
+                                            <h1 className='text-center'>Edit Blog Details</h1>
+
                                 <Grid item xs={12}>
                                     <FormControl style={{ width: '100vh', marginTop: '20px' }}>
                                         <InputLabel htmlFor="heading">Heading</InputLabel>

@@ -33,12 +33,24 @@ const SubscriptionData = () => {
           { field: "endDate", headerName: "End Date", width: 100,
           valueFormatter: params => new Date(params?.value).toLocaleDateString()
         },
-          { field: "data", headerName: "Customer Name", width: 100,
+          { field: "data", headerName: "Customer Name", width: 150,
           renderCell: details => {
             console.log(details);
             return details.row.data.customer_details.name
           }
         },
+        { field: "da", headerName: "Plan", width: 100,
+        renderCell: details => {
+          console.log(details);
+          return details.row.data.plan.name
+        }
+      }, 
+      { field: "dat", headerName: "Price", width: 100,
+          renderCell: details => {
+            console.log(details);
+            return details.row.data.plan.price
+          }
+        },      
        
      
           {
@@ -67,7 +79,7 @@ const SubscriptionData = () => {
              // return <Button onClick={( ) => deleteUser(thisRow._id)}>Delete</Button>;
             }
           },
-      
+          
        ];
 
     const getBlogFromBackend = async () => {

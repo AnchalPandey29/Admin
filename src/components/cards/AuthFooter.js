@@ -17,7 +17,7 @@ const AuthFooter = () => {
                 <Typography variant="subtitle2" color="secondary" component="span">
                     &copy; InvestUp Admin Dashboard;
                     <Typography component={Link} variant="subtitle2" href="https://codedthemes.com" target="_blank" underline="hover">
-                        CodedThemes
+                        InvestUp
                     </Typography>
                 </Typography>
 
@@ -34,7 +34,7 @@ const AuthFooter = () => {
                         target="_blank"
                         underline="hover"
                     >
-                        MUI Templates
+                        InvestUp Official Website
                     </Typography>
                     <Typography
                         variant="subtitle2"
@@ -46,16 +46,7 @@ const AuthFooter = () => {
                     >
                         Privacy Policy
                     </Typography>
-                    {/* <Typography
-                        variant="subtitle2"
-                        color="secondary"
-                        component={Link}
-                        href="https://codedthemes.support-hub.io/"
-                        target="_blank"
-                        underline="hover"
-                    >
-                        Support
-                    </Typography> */}
+                  
                 </Stack>
             </Stack>
         </Container>
